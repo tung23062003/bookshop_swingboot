@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin - Thêm và cập nhật sách</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .scroll-to-top {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #007bff;
+        color: #ffffff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: opacity 0.3s ease;
+      }
+
+      .scroll-to-top:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Copy tu day-->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="index.html">Book Store</a>
+      <!-- Sidebar Toggle-->
+      <button
+        class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+        id="sidebarToggle"
+        href="#!"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navbar Search-->
+      <form
+        class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+      ></form>
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fas fa-user fa-fw"></i
+          ></a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
+            <li><a class="dropdown-item" href="#!">Hoạt động</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+              <div class="sb-sidenav-menu">
+                  <div class="nav">
+                      <div class="sb-sidenav-menu-heading">Admin</div>
+                      <a class="nav-link" href="index.html">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-tachometer-alt"></i>
+                          </div>
+                          Dashboard
+                      </a>
+                      <div class="sb-sidenav-menu-heading">Hệ thống quản trị</div>
+                      <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Layouts
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a> -->
+                      <!-- Người dùng -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder_1" aria-expanded="false" aria-controls="collapseOrder">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Người Dùng
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseOrder_1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="User.html">Danh Sách Người Dùng</a>
+                          </nav>
+                      </div>
+                      <!-- Danh mục -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder_2" aria-expanded="false" aria-controls="collapseOrder">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Danh Mục
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseOrder_2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="Category.html">Danh Sách Danh Mục</a>
+                              <a class="nav-link" href="Caregory_Add_or_Update.html">Thêm Danh Mục</a>
+                          </nav>
+                      </div>
+                     <!-- Sản Phẩm -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder_3" aria-expanded="false" aria-controls="collapseOrder">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Sản Phẩm
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseOrder_3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="Books.html">Danh Sách Sản Phẩm</a>
+                              <a class="nav-link" href="Books_Add_or_Update.html">Thêm Sản Phẩm</a>
+                          </nav>
+                      </div>
+                      <!-- Đơn hàng -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder_4" aria-expanded="false" aria-controls="collapseOrder">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Đơn hàng
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseOrder_4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="Order.html">Danh Sách Đơn Hàng</a>
+                              <a class="nav-link" href="Order_Add_or_Update.html">Thêm Đơn Hàng</a>
+                          </nav>
+                      </div>
+                      <!-- contact -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseContact" aria-expanded="false" aria-controls="collapseContact">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Liên Hệ
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseContact" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="Contacts.html">Danh Sách Liên Hệ</a>
+                          </nav>
+                      </div>
+  
+                      <!-- Statistics -->
+                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStatistics" aria-expanded="false" aria-controls="collapseStatistics">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-columns"></i>
+                          </div>
+                          Thống kê
+                          <div class="sb-sidenav-collapse-arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </div>
+                      </a>
+                      <div class="collapse" id="collapseStatistics" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="Statistics.html">Thống kê doanh thu</a>
+  
+                          </nav>
+                      </div>
+  
+                      <!-- <div class="sb-sidenav-menu-heading">Addons</div>
+                      <a class="nav-link" href="charts.html">
+                          <div class="sb-nav-link-icon">
+                              <i class="fas fa-chart-area"></i>
+                          </div>
+                          Charts
+                      </a>
+                      <a class="nav-link" href="tables.html">
+                          <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                          Tables
+                      </a> -->
+                  </div>
+              </div>
+              <!-- End of nav bar-->
+          <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Book Store
+          </div>
+        </nav>
+      </div>
+      <!-- Copy den day-->
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid px-4">
+            <ol class="breadcrumb mb-4 mt-4">
+              <li class="breadcrumb-item">
+                <a href="index.html">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Thêm hoặc Cập nhật Sách</li>
+            </ol>
+
+            <div class="container mt-5">
+              <h2>Thêm hoặc Cập nhật Sách</h2>
+              <form>
+                <!-- Book ID -->
+                <div class="form-group"></div>
+                <br />
+                <!-- Book Title -->
+                <div class="form-group">
+                  <label for="bookTitle">Tiêu đề</label>
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="bookTitle"
+                    name="bookTitle"
+                    placeholder="Nhập tiêu đề sách"
+                  />
+                </div>
+                <br />
+
+                <!-- Book Author -->
+                <div class="form-group">
+                  <label for="bookAuthor">Tác giả:</label>
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="bookAuthor"
+                    name="bookAuthor"
+                    placeholder="Nhập tên tác giả"
+                  />
+                </div>
+                <br />
+                <!-- Book Publisher -->
+                <div class="form-group">
+                  <label for="bookPublisher">Nhà xuất bản:</label>
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="bookPublisher"
+                    name="bookPublisher"
+                    placeholder="Nhập tên nhà xuất bản sách"
+                  />
+                </div>
+                <br />
+
+                <!-- Published Date -->
+                <div class="form-group">
+                  <label for="publishedDate">Ngày xuất bản:</label>
+                  <input
+                    required
+                    type="date"
+                    class="form-control"
+                    id="publishedDate"
+                    name="publishedDate"
+                  />
+                </div>
+                <br />
+                <!-- Category ID -->
+                <div class="form-group">
+                  <label for="categoryId">Danh mục:</label>
+                  <select
+                    required
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Chọn 1 trong các danh mục sau</option>
+                    <option value="1">Danh mục 1</option>
+                    <option value="2">Danh mục 2</option>
+                    <option value="3">Danh mục 3</option>
+                  </select>
+                </div>
+                <br />
+                <!-- Original Price -->
+                <div class="form-group">
+                  <label for="originalPrice">Giá gốc: </label>
+                  <input
+                    required
+                    type="number"
+                    step="0.01"
+                    class="form-control"
+                    id="originalPrice"
+                    name="originalPrice"
+                    placeholder="Nhập giác gốc"
+                  />
+                </div>
+                <br />
+                <!-- Sale Price -->
+                <div class="form-group">
+                  <label for="salePrice">Giá sale:</label>
+                  <input
+                    required
+                    type="number"
+                    step="0.01"
+                    class="form-control"
+                    id="salePrice"
+                    name="salePrice"
+                    placeholder="Nhập giá sale"
+                  />
+                </div>
+                <br />
+                <!-- Quantity -->
+                <div class="form-group">
+                  <label for="quantity">Số lượng:</label>
+                  <input
+                    required
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    name="quantity"
+                    placeholder="Nhập số lượng"
+                  />
+                </div>
+                <br />
+                <!-- Number of Pages -->
+                <div class="form-group">
+                  <label for="numberOfPages">Số trang:</label>
+                  <input
+                    required
+                    type="number"
+                    class="form-control"
+                    id="numberOfPages"
+                    name="numberOfPages"
+                    placeholder="Nhập số trang"
+                  />
+                </div>
+                <br />
+                <!-- Description -->
+                <div class="form-group">
+                  <label for="description">Mô tả:</label>
+                  <textarea
+                    rows="6"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    placeholder="Nhập mô tả sách"
+                  ></textarea>
+                </div>
+                <br />
+                <!-- Cover Image -->
+                <div class="form-group">
+                  <label for="coverImage">Ảnh bìa:</label>
+                  <div class="input-group mb-3">
+                    <input
+                      required
+                      type="file"
+                      class="form-control"
+                      id="inputGroupFile02"
+                    />
+                    <label class="input-group-text" for="inputGroupFile02"
+                      >Upload</label
+                    >
+                  </div>
+                </div>
+                <br />
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
+              </form>
+            </div>
+            <br />
+          </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-4">
+            <div
+              class="d-flex align-items-center justify-content-between small"
+            >
+              <div class="text-muted">Copyright &copy; Your Website 2023</div>
+              <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- Scroll-to-top button -->
+        <div id="scrollButton" class="scroll-to-top" onclick="scrollToTop()">
+          <i class="fas fa-arrow-up"></i>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Function to show/hide the scroll-to-top button
+      function toggleScrollButton() {
+        const scrollButton = document.getElementById("scrollButton");
+        if (window.scrollY >= 200) {
+          scrollButton.style.display = "block";
+        } else {
+          scrollButton.style.display = "none";
+        }
+      }
+
+      // Function to scroll to the top of the page
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Add event listener to show/hide the scroll-to-top button
+      window.addEventListener("scroll", toggleScrollButton);
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

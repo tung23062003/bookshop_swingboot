@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê và biểu đồ</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Thống kê dữ liệu</h1>
+        <div class="row mb-4">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-md-3 mb-3">
+                <div class="card bg-primary text-white text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Tổng Số Lượng Tồn</h5>
+                        <div class="h3 mb-0 font-weight-bold">150</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-md-3 mb-3">
+                <div class="card bg-success text-white text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Tổng Vốn Bỏ Ra</h5>
+                        <div class="h3 mb-0 font-weight-bold">7.000.000,00 ₫</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-md-3 mb-3">
+                <div class="card bg-warning text-white text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Tổng Doanh Thu</h5>
+                        <div class="h3 mb-0 font-weight-bold">2.000.000,00 ₫</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-md-3 mb-3">
+                <div class="card bg-info text-white text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Tổng Lãi</h5>
+                        <div class="h3 mb-0 font-weight-bold">0,00 ₫</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Tháng</th>
+                    <th scope="col">Doanh thu</th>
+                    <th scope="col">Lợi nhuận</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tháng 1</td>
+                    <td>1000</td>
+                    <td>500</td>
+                </tr>
+                <!-- Thêm dữ liệu cho các tháng khác -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container mt-4">
+        <h1>Biểu đồ doanh thu</h1>
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- Thêm Bootstrap JS và thư viện Chart.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Dữ liệu thống kê doanh thu
+        const revenueData = {
+            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+            datasets: [{
+                label: "Doanh thu",
+                data: [1000, 1200, 800, 1500, 1300, 1600, 2000, 9000, 1456, 2900, 1000, 23000],
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1
+            }]
+        };
+
+        // Cấu hình biểu đồ
+        const chartConfig = {
+            type: "bar",
+            data: revenueData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Vẽ biểu đồ
+        const ctx = document.getElementById("myChart").getContext("2d");
+        new Chart(ctx, chartConfig);
+    </script>
+</body>
+
+</html>

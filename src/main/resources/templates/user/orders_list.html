@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Order list</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" href="images/icon.png" />
+
+    <!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/plugins.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <!-- Modernizer js -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <style>
+      /* Custom CSS for Orders List page */
+      .wishlist-area {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
+      .wishlist-table {
+        margin-top: 30px;
+      }
+
+      .wishlist-table table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .wishlist-table th,
+      .wishlist-table td {
+        text-align: left;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .wishlist-table th {
+        background-color: #f8f8f8;
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      .order-details a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .mainmenu__nav .meninmenu li a {
+        color: white;
+      }
+      /* Style for order status cells */
+      .order-status {
+        text-align: center;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+
+      /* Style for the "delevering" status */
+      .order-status.delivering {
+        color: #007bff;
+      }
+
+      /* Style for the "Processing" status */
+      .order-status.processing {
+        color: #ffc107;
+      }
+
+      /* Style for the "Cancelled" status */
+      .order-status.cancelled {
+        color: #dc3545;
+      }
+
+      /* Style for the "Completed" status */
+      .order-status.completed {
+        color: #28a745;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main wrapper -->
+    <div class="wrapper" id="wrapper">
+      <!-- Header -->
+      <header
+        id="wn__header"
+        class="header__area header__absolute sticky__header"
+      >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+              <div class="logo">
+                <a href="index.html">
+                  <img
+                    src="images/logo/Rooks-Logo.png"
+                    class="logo"
+                    alt="logo images"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-8 d-none d-lg-block">
+              <nav class="mainmenu__nav">
+                <ul class="meninmenu d-flex justify-content-start">
+                  <li class="drop with--one--item">
+                    <a href="index.html">Home</a>
+                  </li>
+                  <li class="drop">
+                    <a href="#">Shop</a>
+                  </li>
+
+                  <li class="drop">
+                    <a href="#">Categories</a>
+                    <div class="megamenu dropdown">
+                      <ul class="item item01">
+                        <li><a href="my-account.html">My Account</a></li>
+                        <li><a href="cart.html">Cart Page</a></li>
+                        <li><a href="checkout.html">Checkout Page</a></li>
+                        <li><a href="wishlist.html">Wishlist Page</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+              <ul
+                class="header__sidebar__right d-flex justify-content-end align-items-center"
+              >
+                <li class="shop_search">
+                  <a class="search__active" href="#"></a>
+                </li>
+                <li class="wishlist"><a href="wishlist.html"></a></li>
+                <li class="shopcart">
+                  <a href="cart.html"><span class="product_qun">3</span></a>
+                </li>
+
+                <li class="setting__bar__icon">
+                  <a class="setting__active" href="#"></a>
+                  <div class="searchbar__content setting__block">
+                    <div class="content-inner">
+                      <div class="switcher-currency">
+                        <strong class="label switcher-label">
+                          <span>My Account</span>
+                        </strong>
+                        <div class="switcher-options">
+                          <div class="switcher-currency-trigger">
+                            <div class="setting__menu">
+                              <span><a href="#">My Account</a></span>
+                              <span><a href="#">Sign In</a></span>
+                              <span><a href="#">Create An Account</a></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- //Header -->
+      <!-- Start Search Popup -->
+      <div class="box-search-content search_active block-bg close__top">
+        <form id="search_mini_form" class="minisearch" action="#">
+          <div class="field__search">
+            <input type="text" placeholder="Search entire store here..." />
+            <div class="action">
+              <a href="#"><i class="zmdi zmdi-search"></i></a>
+            </div>
+          </div>
+        </form>
+        <div class="close__wrap">
+          <span>close</span>
+        </div>
+      </div>
+      <!-- End Search Popup -->
+      <!-- Start Bradcaump area -->
+      <div class="ht__bradcaump__area bg-image--5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="bradcaump__inner text-center">
+                <h2 class="bradcaump-title">Orders list</h2>
+                <nav class="bradcaump-content">
+                  <a class="breadcrumb_item" href="index.html">Home</a>
+                  <span class="brd-separetor">/</span>
+                  <span class="breadcrumb_item active">Orders list</span>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Bradcaump area -->
+      <!-- orders-list-main-area start -->
+      <div class="wishlist-area section-padding--lg bg__white">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="wishlist-content">
+                <form action="#">
+                  <div class="wishlist-table wnro__table table-responsive">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="order-id">
+                            <span class="nobr">Order ID</span>
+                          </th>
+                          <th class="order-date">
+                            <span class="nobr">Order Date</span>
+                          </th>
+                          <th class="order-amount">
+                            <span class="nobr">Order Amount</span>
+                          </th>
+                          <th class="order-status">
+                            <span class="nobr">Order Status</span>
+                          </th>
+                          <th class="order-details"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="order-id">#12345</td>
+                          <td class="order-date">2023-07-25</td>
+                          <td class="order-amount">$165.00</td>
+                          <td class="order-status delivering">Delivering</td>
+                          <td class="order-details">
+                            <a href="#">View Details</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="order-id">#67890</td>
+                          <td class="order-date">2023-07-24</td>
+                          <td class="order-amount">$50.00</td>
+                          <td class="order-status completed">Completed</td>
+                          <td class="order-details">
+                            <a href="#">View Details</a>
+                          </td>
+                        </tr>
+                        <!-- Add more order rows here as needed -->
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- orders-list-main-area end -->
+      <!-- Footer Area -->
+      <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
+        <div class="footer-static-top">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="footer__widget footer__menu">
+                  <div class="ft__logo">
+                    <a href="index.html">
+                      <img src="images/logo/3.png" alt="logo" />
+                    </a>
+                  </div>
+                  <div class="footer__content">
+                    <ul
+                      class="social__net social__net--2 d-flex justify-content-center"
+                    >
+                      <li>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-google"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                      </li>
+                    </ul>
+                    <ul class="mainmenu d-flex justify-content-center">
+                      <li><a href="index.html">Best Seller</a></li>
+                      <li><a href="index.html">All Product</a></li>
+                      <li><a href="index.html">Contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- //Footer Area -->
+    </div>
+    <!-- //Main wrapper -->
+
+    <!-- JS Files -->
+    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/active.js"></script>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 package com.group7.bookshopwebsite.entity;
+import java.io.Serializable;
 import java.util.Date;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

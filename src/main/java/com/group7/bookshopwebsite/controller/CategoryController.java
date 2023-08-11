@@ -3,6 +3,5 @@ package com.group7.bookshopwebsite.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class UserController {
-
+public class CategoryController {
 }

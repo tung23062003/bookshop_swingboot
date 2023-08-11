@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -59,4 +60,18 @@ public class Book {
     @ManyToMany(mappedBy = "favoriteBooks")
     private Set<User> usersWhoFavorited;
 
+    public void addUser(User user) {
+        Set<User> users = this.getUsersWhoFavorited();
+        if (usersWhoFavorited == null) {
+            usersWhoFavorited = new HashSet<>();
+        }
+        usersWhoFavorited.add(user);
+        this.setUsersWhoFavorited(users);
+    }
+
+    public  void removeUserWhoFavorited( User user) {
+        if (this.usersWhoFavorited != null) {
+            this.usersWhoFavorited.remove(user);
+        }
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/admin/categories_management")
-public class CategoryController {
+public class AdminCategoryController {
 
     private final CategoryService categoryService;
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
-public class HomeController {
+public class AdminHomeController {
     
 
 }

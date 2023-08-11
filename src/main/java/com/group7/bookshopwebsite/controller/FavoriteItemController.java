@@ -5,5 +5,5 @@ import org.springframework.stereotype.Controller;
 
 @AllArgsConstructor
 @Controller
-public class FavoriteController {
+public class FavoriteItemController {
 }

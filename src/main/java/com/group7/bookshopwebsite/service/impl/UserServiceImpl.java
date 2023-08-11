@@ -15,7 +15,6 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
-
     @Override
     public Set<Book> getFavoriteBooks(Long userId) {
         User user = userRepository.findById(userId).orElse(null);

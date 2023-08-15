@@ -10,7 +10,6 @@ import lombok.Setter;
 public class BookSearchDTO {
     private Long categoryId;
     private String keyword;
-    // Các thuộc tính tìm kiếm khác (nếu có)
-    // Getter và Setter
+
 }
 

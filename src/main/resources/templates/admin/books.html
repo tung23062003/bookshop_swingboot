@@ -9,6 +9,8 @@
 	<meta content="" name="author" />
 	<title>Admin - Sản Phẩm</title>
 	<link th:href="@{/css/admin/styles.css}" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
 	<script crossorigin="anonymous" th:src="@{/js/admin/fontawesome-all.js}"></script>
 </head>
 
@@ -27,6 +29,8 @@
 						</li>
 						<li class="breadcrumb-item active">Sản Phẩm</li>
 					</ol>
+
+
 
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
@@ -91,11 +95,11 @@
 											 th:src="@{/cover_images/__${book.coverImage}__}"
 											style="max-width: 100px;"></td>
 									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" th:href="@{/admin/books_management/edit/__${book.id}__}"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" th:href="@{/admin/books_management/delete/__${book.id}__}" type="button">Xóa</a>
+										<a class="btn btn-primary btn-sm" th:href="@{/admin/books_management/edit/__${book.id}__}" type="button">Cập nhật</a>
+										<button class="btn btn-danger btn-sm btn-delete" type="button" th:data-book-id="${book.id}">Xóa</button>
+
 									</td>
+
 								</tr>
 
 							</tbody>
@@ -128,9 +132,42 @@
 		</div>
 	</div>
 
+	<!-- Modal for Delete Confirmation -->
+	<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteConfirmationModalLabel">Xác nhận xoá sản phẩm</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Bạn có chắc chắn muốn xoá sản phẩm này không?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					<a id="deleteButton" class="btn btn-danger">Xoá</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script crossorigin="anonymous" th:src="@{/js/admin/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/js/admin/scripts.js}"></script>
 	<script th:src="@{/js/admin/contacts.js}"></script>
+
+	<!-- JavaScript for Delete Confirmation -->
+	<script>
+		$(document).ready(function () {
+			$(".btn-delete").on("click", function () {
+				var bookId = $(this).attr("data-book-id");
+				var deleteUrl = "/admin/books_management/delete/" + bookId
+
+				$("#deleteButton").attr("href", deleteUrl);
+				$("#deleteConfirmationModal").modal("show");
+
+			});
+		});
+	</script>
 </body>
 
 </html>

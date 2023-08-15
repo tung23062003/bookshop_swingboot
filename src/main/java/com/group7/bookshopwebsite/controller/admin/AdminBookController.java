@@ -67,6 +67,7 @@ public class AdminBookController {
             return "admin/books_add_or_update";
         }
 
+
         if (book.getId() != null) {
             // Check if there is an existing book with the given ID
             Book existingBook = bookService.getBookById(book.getId());
@@ -78,10 +79,17 @@ public class AdminBookController {
                 if (coverImage.isEmpty()) {
                     book.setCoverImage(existingBook.getCoverImage());
                 }
+
                 bookService.editBook(book, coverImage);
             }
         } else {
-            bookService.addBook(book, coverImage);
+            Book exist = bookService.getBookByName(book.getTitle());
+
+            if (exist!= null) {
+                model.addAttribute("error", "Đã tồn tại sách với tên này");
+                return "admin/books_add_or_update";
+            }else bookService.addBook(book, coverImage);
+
         }
 
         return "redirect:/admin/books_management/add";
@@ -95,6 +103,7 @@ public class AdminBookController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("book", book);
         model.addAttribute("categories", categories);
+
         return "admin/books_add_or_update";
     }
 
@@ -102,6 +111,7 @@ public class AdminBookController {
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
+
         return "redirect:/admin/books_management";
     }
 }

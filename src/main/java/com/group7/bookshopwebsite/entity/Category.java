@@ -19,6 +19,9 @@ public class Category implements Serializable {
 
     private String name;
 
+    @Lob
+    private String description;
+
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;

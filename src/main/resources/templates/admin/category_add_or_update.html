@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Static Navigation - SB Admin</title>
+	<title>Admin - Add category</title>
 	<link th:href="@{/css/admin/styles.css}" rel="stylesheet" />
 	<script th:src="@{/js/admin/fontawesome-all.js}" crossorigin="anonymous"></script>
 </head>
@@ -34,26 +34,22 @@
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
 						<h2>Thêm - Cập nhật Danh Mục</h2>
-						<form>
-							<!-- Book ID -->
-							<div class="form-group"></div>
-							<br />
-							<!-- Book Title -->
+						<form th:action="@{/admin/categories_management/add_or_update}" th:object="${category}" method="post">
+							<!-- Category ID (hidden) -->
+							<input type="hidden" th:field="*{id}" />
+
+							<!-- Category Name -->
 							<div class="form-group">
 								<label for="categoryName">Tên danh mục:</label>
-								<input required type="text" class="form-control mt-2" id="categoryName"
-									name="categoryName" placeholder="Enter Category's name" />
+								<input id="categoryName" required type="text" class="form-control mt-2" th:field="*{name}" placeholder="Enter Category's name" />
 							</div>
-							<br />
+							<!-- Description -->
 							<div class="form-group">
 								<label for="description">Mô tả:</label>
-								<textarea rows="6" class="form-control" id="description" name="description"
-									placeholder="Enter category's description"></textarea>
+								<textarea id="description" rows="6" class="form-control" th:field="*{description}" placeholder="Enter category's description"></textarea>
 							</div>
-							<br />
-
 							<!-- Submit Button -->
-							<a th:href="@{/admin/categories}" class="btn btn-primary mb-3 mt-3 mb-4">Submit</a>
+							<button type="submit" class="btn btn-primary mb-3 mt-3 mb-4">Submit</button>
 						</form>
 					</div>
 				</div>

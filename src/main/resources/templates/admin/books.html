@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org.com" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 	<meta charset="utf-8" />
@@ -31,7 +31,34 @@
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
 						<h1>Danh sách sản phẩm</h1>
-						<a class="btn btn-primary mb-3" href="AddCategory.html">Thêm sản phẩm</a>
+						<a class="btn btn-primary mb-3" th:href="@{/admin/books_management/add}">Thêm sản phẩm</a>
+
+						<form th:action="@{/admin/books_management}" th:method="get" class="mb-5">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="categoryId">Tìm theo danh mục:</label>
+										<select id="categoryId" class="form-select" name="categoryId">
+											<option value="" selected>Tất cả danh mục</option>
+											<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="keyword">Từ khoá:</label>
+										<input id="keyword" type="text" class="form-control" name="keyword" placeholder="Nhập từ khoá tìm kiếm" />
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>&nbsp;</label>
+										<button type="submit" class="btn mt-4 btn-primary">Tìm kiếm</button>
+									</div>
+								</div>
+							</div>
+						</form>
+
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
@@ -49,8 +76,8 @@
 								</tr>
 							</thead>
 							<tbody id="userlist">
-								<tr>
-									<td>1</td>
+								<tr th:each="book : ${bookPage.content}">
+									<td th:text="${book.id}"></td>
 									<td>Sách thể thao</td>
 									<td>Nguyễn Văn A</td>
 									<td>Nhà XB A</td>
@@ -70,176 +97,36 @@
 									</td>
 								</tr>
 
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" th:href="@{'/admin/add-or-update-books'}"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
-									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
-											style="max-width: 100px;"></td>
-									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" href="Books_Add_or_Update.html"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
-									</td>
-								</tr>
-
 							</tbody>
 						</table>
-						<div class="pagination justify-content-center" id="pagination"></div>
+						<!-- Hiển thị các phân trang -->
+						<div th:if="${bookPage.totalPages > 1}">
+							<ul class="pagination">
+								<li th:classappend="${page == 1} ? disabled">
+									<a th:href="@{/admin/books(page=1, size=${size})}" aria-label="First">
+										<span aria-hidden="true">&laquo;&laquo;</span>
+									</a>
+								</li>
+								<li th:classappend="${page == 1} ? disabled">
+									<a th:href="@{/admin/books(page=${page - 1}, size=${size})}" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+								<li th:each="pageNumber : ${#numbers.sequence(1, bookPage.totalPages)}" th:classappend="${page == pageNumber} ? active">
+									<a th:href="@{/admin/books(page=${pageNumber}, size=${size})}" th:text="${pageNumber}"></a>
+								</li>
+								<li th:classappend="${page == bookPage.totalPages} ? disabled">
+									<a th:href="@{/admin/books(page=${page + 1}, size=${size})}" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+								<li th:classappend="${page == bookPage.totalPages} ? disabled">
+									<a th:href="@{/admin/books(page=${bookPage.totalPages}, size=${size})}" aria-label="Last">
+										<span aria-hidden="true">&raquo;&raquo;</span>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</main>

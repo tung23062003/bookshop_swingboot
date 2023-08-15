@@ -7,7 +7,6 @@ import com.group7.bookshopwebsite.service.BookService;
 import com.group7.bookshopwebsite.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -40,9 +39,13 @@ public class AdminBookController {
 
         model.addAttribute("bookPage", bookPage);
         model.addAttribute("categories", categories);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
 
         return "admin/books";
     }
+
+
     @GetMapping("/add")
     public String showAddBookForm(Model model) {
         List<Category> categories = categoryService.getAllCategories();
@@ -64,6 +67,7 @@ public class AdminBookController {
             return "admin/books_add_or_update";
         }
 
+
         if (book.getId() != null) {
             // Check if there is an existing book with the given ID
             Book existingBook = bookService.getBookById(book.getId());
@@ -75,10 +79,17 @@ public class AdminBookController {
                 if (coverImage.isEmpty()) {
                     book.setCoverImage(existingBook.getCoverImage());
                 }
+
                 bookService.editBook(book, coverImage);
             }
         } else {
-            bookService.addBook(book, coverImage);
+            Book exist = bookService.getBookByName(book.getTitle());
+
+            if (exist!= null) {
+                model.addAttribute("error", "Đã tồn tại sách với tên này");
+                return "admin/books_add_or_update";
+            }else bookService.addBook(book, coverImage);
+
         }
 
         return "redirect:/admin/books_management/add";
@@ -92,13 +103,15 @@ public class AdminBookController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("book", book);
         model.addAttribute("categories", categories);
+
         return "admin/books_add_or_update";
     }
 
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return "redirect:/admin/books_management/add";
+
+        return "redirect:/admin/books_management";
     }
 }

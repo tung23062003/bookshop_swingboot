@@ -9,6 +9,8 @@
 	<meta content="" name="author" />
 	<title>Admin - Sản Phẩm</title>
 	<link th:href="@{/css/admin/styles.css}" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
 	<script crossorigin="anonymous" th:src="@{/js/admin/fontawesome-all.js}"></script>
 </head>
 
@@ -28,17 +30,19 @@
 						<li class="breadcrumb-item active">Sản Phẩm</li>
 					</ol>
 
+
+
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
 						<h1>Danh sách sản phẩm</h1>
 						<a class="btn btn-primary mb-3" th:href="@{/admin/books_management/add}">Thêm sản phẩm</a>
 
-						<form th:action="@{/admin/books_management}" th:method="get" class="mb-5">
+						<form th:action="@{/admin/books_management}" th:method="get" class="mb-5" th:object="${search}">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="categoryId">Tìm theo danh mục:</label>
-										<select id="categoryId" class="form-select" name="categoryId">
+										<select id="categoryId" class="form-select" name="categoryId" th:field="*{categoryId}">
 											<option value="" selected>Tất cả danh mục</option>
 											<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
 										</select>
@@ -47,7 +51,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="keyword">Từ khoá:</label>
-										<input id="keyword" type="text" class="form-control" name="keyword" placeholder="Nhập từ khoá tìm kiếm" />
+										<input id="keyword" type="text" class="form-control" name="keyword" th:field="*{keyword}" placeholder="Nhập từ khoá tìm kiếm" />
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -76,57 +80,51 @@
 								</tr>
 							</thead>
 							<tbody id="userlist">
-								<tr th:each="book : ${bookPage.content}">
+								<tr th:each="book : ${bookPage}">
 									<td th:text="${book.id}"></td>
-									<td>Sách thể thao</td>
-									<td>Nguyễn Văn A</td>
-									<td>Nhà XB A</td>
-									<td>20/3/2023</td>
-									<td>50.000</td>
-									<td>12.000</td>
-									<td>300</td>
-									<td>100</td>
+									<td th:text="${book.title}"></td>
+									<td th:text="${book.author}"></td>
+									<td th:text="${book.publisher}"></td>
+									<td th:text="${#dates.format(book.publishedDate, 'dd/MM/yyyy')}"></td>
+
+									<td th:text="${book.originalPrice}"></td>
+									<td th:text="${book.salePrice}"></td>
+									<td th:text="${book.qty}"></td>
+									<td th:text="${book.numberOfPages}"></td>
 									<td><img class="bookImage"
-											src="https://cdn.sachmem.vn/public//bookcovers2/TA3GSSHST2-teacher.jpg"
+											 th:src="@{/cover_images/__${book.coverImage}__}"
 											style="max-width: 100px;"></td>
 									<td style="width: 12rem;">
-										<a class="btn btn-primary btn-sm" th:href="@{'/admin/add-or-update-book'}"
-											type="button">Cập
-											nhật</a>
-										<a class="btn btn-danger btn-sm" type="button">Xóa</a>
+										<a class="btn btn-primary btn-sm" th:href="@{/admin/books_management/edit/__${book.id}__}" type="button">Cập nhật</a>
+										<button class="btn btn-danger btn-sm btn-delete" type="button" th:data-book-id="${book.id}">Xóa</button>
+
 									</td>
+
 								</tr>
 
 							</tbody>
 						</table>
 						<!-- Hiển thị các phân trang -->
-						<div th:if="${bookPage.totalPages > 1}">
-							<ul class="pagination">
-								<li th:classappend="${page == 1} ? disabled">
-									<a th:href="@{/admin/books(page=1, size=${size})}" aria-label="First">
-										<span aria-hidden="true">&laquo;&laquo;</span>
-									</a>
-								</li>
-								<li th:classappend="${page == 1} ? disabled">
-									<a th:href="@{/admin/books(page=${page - 1}, size=${size})}" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-									</a>
-								</li>
-								<li th:each="pageNumber : ${#numbers.sequence(1, bookPage.totalPages)}" th:classappend="${page == pageNumber} ? active">
-									<a th:href="@{/admin/books(page=${pageNumber}, size=${size})}" th:text="${pageNumber}"></a>
-								</li>
-								<li th:classappend="${page == bookPage.totalPages} ? disabled">
-									<a th:href="@{/admin/books(page=${page + 1}, size=${size})}" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-									</a>
-								</li>
-								<li th:classappend="${page == bookPage.totalPages} ? disabled">
-									<a th:href="@{/admin/books(page=${bookPage.totalPages}, size=${size})}" aria-label="Last">
-										<span aria-hidden="true">&raquo;&raquo;</span>
-									</a>
-								</li>
-							</ul>
+						<!-- Pagination -->
+						<div class="d-flex justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+										<a class="page-link" th:if="${currentPage > 1}" th:href="@{/admin/books_management(page=1)}">First</a>
+									</li>
+									<li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+										<a class="page-link" th:if="${currentPage > 1}" th:href="@{/admin/books_management(page=${currentPage - 1})}">Previous</a>
+									</li>
+									<li class="page-item" th:classappend="${currentPage == totalPages} ? disabled">
+										<a class="page-link" th:if="${currentPage < totalPages}" th:href="@{/admin/books_management(page=${currentPage + 1})}">Next</a>
+									</li>
+									<li class="page-item" th:classappend="${currentPage == totalPages} ? disabled">
+										<a class="page-link" th:if="${currentPage < totalPages}" th:href="@{/admin/books_management(page=${totalPages})}">Last</a>
+									</li>
+								</ul>
+							</nav>
 						</div>
+
 					</div>
 				</div>
 			</main>
@@ -134,9 +132,42 @@
 		</div>
 	</div>
 
+	<!-- Modal for Delete Confirmation -->
+	<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteConfirmationModalLabel">Xác nhận xoá sản phẩm</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Bạn có chắc chắn muốn xoá sản phẩm này không?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					<a id="deleteButton" class="btn btn-danger">Xoá</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script crossorigin="anonymous" th:src="@{/js/admin/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/js/admin/scripts.js}"></script>
 	<script th:src="@{/js/admin/contacts.js}"></script>
+
+	<!-- JavaScript for Delete Confirmation -->
+	<script>
+		$(document).ready(function () {
+			$(".btn-delete").on("click", function () {
+				var bookId = $(this).attr("data-book-id");
+				var deleteUrl = "/admin/books_management/delete/" + bookId
+
+				$("#deleteButton").attr("href", deleteUrl);
+				$("#deleteConfirmationModal").modal("show");
+
+			});
+		});
+	</script>
 </body>
 
 </html>

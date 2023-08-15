@@ -20,14 +20,14 @@
 			<div class="sb-sidenav-menu">
 				<div class="nav">
 					<div class="sb-sidenav-menu-heading">Admin</div>
-					<a class="nav-link" th:href="@{home}">
+					<a class="nav-link" th:href="@{/admin}">
 						<div class="sb-nav-link-icon">
 							<i class="fas fa-tachometer-alt"></i>
 						</div>
 						Dashboard
 					</a>
 					<div class="sb-sidenav-menu-heading">Hệ thống quản trị</div>
-					<a class="nav-link collapsed" th:href="@{home}" href="#" data-bs-toggle="collapse"
+					<a class="nav-link collapsed" th:href="@{/admin}" href="#" data-bs-toggle="collapse"
 						data-bs-target="#collapseOrder_1" aria-expanded="false" aria-controls="collapseOrder">
 						<div class="sb-nav-link-icon">
 							<i class="fas fa-columns"></i>
@@ -40,7 +40,7 @@
 					<div class="collapse" id="collapseOrder_1" aria-labelledby="headingOne"
 						data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" th:href="@{/admin/users}">Danh Sách Người Dùng</a>
+							<a class="nav-link" th:href="@{/admin/users_management}">Danh Sách Người Dùng</a>
 						</nav>
 					</div>
 					<!-- Danh mục -->
@@ -75,8 +75,8 @@
 					<div class="collapse" id="collapseOrder_3" aria-labelledby="headingOne"
 						data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" th:href="@{/admin/books}">Danh Sách Sản Phẩm</a>
-							<a class="nav-link" th:href="@{/admin/add-or-update-book}">Thêm Sản Phẩm</a>
+							<a class="nav-link" th:href="@{/admin/books_management}">Danh Sách Sản Phẩm</a>
+							<a class="nav-link" th:href="@{/admin/books_management/add}">Thêm Sản Phẩm</a>
 						</nav>
 					</div>
 					<!-- Đơn hàng -->
@@ -93,7 +93,7 @@
 					<div class="collapse" id="collapseOrder_4" aria-labelledby="headingOne"
 						data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" th:href="@{/admin/orders}">Danh Sách Đơn Hàng</a>
+							<a class="nav-link" th:href="@{/admin/orders_management}">Danh Sách Đơn Hàng</a>
 						</nav>
 					</div>
 					<!-- contact -->
@@ -110,7 +110,7 @@
 					<div class="collapse" id="collapseContact" aria-labelledby="headingOne"
 						data-bs-parent="#sidenavAccordion">
 						<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" th:href="@{/admin/contacts}">Danh Sách Liên Hệ</a>
+							<a class="nav-link" th:href="@{/admin/contacts_management}">Danh Sách Liên Hệ</a>
 						</nav>
 					</div>
 

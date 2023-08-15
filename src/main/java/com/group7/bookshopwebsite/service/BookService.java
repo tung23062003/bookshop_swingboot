@@ -17,7 +17,7 @@ public interface BookService {
     void deleteBook(Long id);
 
     Book getBookById(Long id);
-
+    Book getBookByName(String name);
     List<Book> getAllBooks();
 
     Page<Book> searchBooks(BookSearchDTO search, Pageable pageable);

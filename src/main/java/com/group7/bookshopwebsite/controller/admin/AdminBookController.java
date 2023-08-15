@@ -7,7 +7,6 @@ import com.group7.bookshopwebsite.service.BookService;
 import com.group7.bookshopwebsite.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -40,9 +39,13 @@ public class AdminBookController {
 
         model.addAttribute("bookPage", bookPage);
         model.addAttribute("categories", categories);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
 
         return "admin/books";
     }
+
+
     @GetMapping("/add")
     public String showAddBookForm(Model model) {
         List<Category> categories = categoryService.getAllCategories();
@@ -96,9 +99,9 @@ public class AdminBookController {
     }
 
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return "redirect:/admin/books_management/add";
+        return "redirect:/admin/books_management";
     }
 }

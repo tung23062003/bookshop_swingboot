@@ -20,40 +20,40 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Quản lý danh mục</h1>
+					<h1 class="mt-4">Phản hồi liên hệ</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">
 							<a th:href="@{/admin/home}">Dashboard</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a th:href="@{/admin/categories}">Danh Mục</a>
+							<a th:href="@{/admin/contacts}">Liên hệ</a>
 						</li>
-						<li class="breadcrumb-item active">Thêm - Sửa Danh Mục</li>
+						<li class="breadcrumb-item active">Phản hồi</li>
 					</ol>
 
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
-						<h2>Thêm - Cập nhật Danh Mục</h2>
+						<h2>Trả lời khách hàng</h2>
 						<form>
 							<!-- Book ID -->
 							<div class="form-group"></div>
 							<br />
 							<!-- Book Title -->
 							<div class="form-group">
-								<label for="categoryName">Tên danh mục:</label>
+								<label for="categoryName">Tiêu đề:</label>
 								<input required type="text" class="form-control mt-2" id="categoryName"
-									name="categoryName" placeholder="Enter Category's name" />
+									name="responseTitle" placeholder="Enter response's title" />
 							</div>
 							<br />
 							<div class="form-group">
-								<label for="description">Mô tả:</label>
+								<label for="description">Nội dung:</label>
 								<textarea rows="6" class="form-control" id="description" name="description"
-									placeholder="Enter category's description"></textarea>
+									placeholder="Enter response's content"></textarea>
 							</div>
 							<br />
 
 							<!-- Submit Button -->
-							<a th:href="@{/admin/categories}" class="btn btn-primary mb-3 mt-3 mb-4">Submit</a>
+							<a th:href="@{/admin/contacts}" class="btn btn-primary mb-3 mt-3 mb-4">Submit</a>
 						</form>
 					</div>
 				</div>

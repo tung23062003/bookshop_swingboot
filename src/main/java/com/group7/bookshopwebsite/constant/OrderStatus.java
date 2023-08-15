@@ -1,0 +1,10 @@
+package com.group7.bookshopwebsite.constant;
+
+public interface OrderStatus {
+    String PENDING = "PENDING";         // Đang chờ xử lý
+    String PROCESSING = "PROCESSING";     // Đang xử lý
+    String DELIVERING = "DELIVERING";        // Đang giao hàng
+    String DELIVERED = "DELIVERED";      // Đã giao thành công
+    String CANCELED = "CANCELED";       // Đã hủy
+}
+

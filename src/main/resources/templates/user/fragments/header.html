@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="user/fragments/head :: head"></head>
+
+<body class="sb-nav-fixed">
+	<header id="wn__header" class="header__area header__absolute sticky__header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-6 col-lg-2">
+					<div class="logo">
+						<a th:href="@{/no-auth/home}">
+							<img th:src="@{/images/user/logo/Rooks-Logo.png}" class="logo" alt="logo images" />
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-8 d-none d-lg-block">
+					<nav class="mainmenu__nav">
+						<ul class="meninmenu d-flex justify-content-start">
+							<li class="drop with--one--item">
+								<a th:href="@{/admin/home}">Home</a>
+							</li>
+							<li class="drop">
+								<a href="#">Shop</a>
+							</li>
+
+							<li class="drop">
+								<a href="#">Categories</a>
+								<div class="megamenu dropdown">
+									<ul class="item item01">
+										<li><a th:href="@{/user/my-account}">My Account</a></li>
+										<li><a th:href="@{/user/cart}">Cart Page</a></li>
+										<li><a th:href="@{/user/checkout}">Checkout Page</a></li>
+										<li><a th:href="@{/user/wishlist}">Wishlist Page</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="@{/no-auth/contact}">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-6 col-sm-6 col-6 col-lg-2">
+					<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+						<li class="shop_search">
+							<a class="search__active" href="#"></a>
+						</li>
+						<li class="wishlist"><a href="wishlist.html"></a></li>
+						<li class="shopcart">
+							<a th:href="@{/user/cart}"><span class="product_qun">3</span></a>
+						</li>
+
+						<li class="setting__bar__icon">
+							<a class="setting__active" href="#"></a>
+							<div class="searchbar__content setting__block">
+								<div class="content-inner">
+									<div class="switcher-currency">
+										<strong class="label switcher-label">
+											<span>My Account</span>
+										</strong>
+										<div class="switcher-options">
+											<div class="switcher-currency-trigger">
+												<div class="setting__menu">
+													<span><a href="#">My Account</a></span>
+													<span><a href="#">Sign In</a></span>
+													<span><a href="#">Create An Account</a></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+</body>
+
+</html>

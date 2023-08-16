@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
-    @GetMapping
-    public String getUserHomePage(){
+    @GetMapping("/home")
+    String getUserHomePage(){
         return "user/index";
     }
 }

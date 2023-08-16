@@ -1,99 +1,66 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-<<<<<<< HEAD
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:replace="user/fragments/head :: head"></head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Rook Book Store</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicons -->
+	<link th:href="@{/images/favicon.ico}" rel="shortcut icon">
+	<link th:href="@{/images/icon.png}" rel=" apple-touch-icon" }>
+
+	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
+	<link th:href="@{/css/user/open_sans.css}" rel="stylesheet">
+	<link th:href="@{/css/user/poppins.css}" rel="stylesheet">
+	<link th:href="@{/css/user/roboto.css}" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link th:href="@{/css/user/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Plugins css -->
+	<link th:href="@{/css/user/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/bicon.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/pe-icon-7-stroke.css}" rel="stylesheet">
+	<link th:href="@{/css/user/slick.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fakeloader.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-slider.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-preview-2.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.carousel.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.theme.default.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/material-design-iconic-font.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/animation.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fancybox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/mainmenu.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fotorama.css}" rel="stylesheet">
+	<link th:href="@{/css/user/jquery-ui.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/lightbox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/style.css}" rel="stylesheet">
+
+	<!-- Cusom css -->
+	<link th:href="@{/css/user/custom.css}" rel="stylesheet">
+
+	<!-- Modernizer js -->
+	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
+
+	<style>
+		.ft__logo a img {
+			max-width: 20%;
+		}
+	</style>
+
+</head>
 
 <body>
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
 		<!-- Header -->
-		<header id="wn__header" class="header__area header__absolute sticky__header">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
-						<div class="logo">
-							<a href="index.html">
-								<img src="images/logo/Rooks-Logo.png" class="logo" alt="logo images" />
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-8 d-none d-lg-block">
-						<nav class="mainmenu__nav">
-							<ul class="meninmenu d-flex justify-content-start">
-								<li class="drop with--one--item">
-									<a href="index.html">Home</a>
-								</li>
-								<li class="drop">
-									<a href="#">Shop</a>
-								</li>
-
-								<li class="drop">
-									<a href="#">Categories</a>
-									<div class="megamenu dropdown">
-										<ul class="item item01">
-											<li><a href="my-account.html">My Account</a></li>
-											<li><a href="cart.html">Cart Page</a></li>
-											<li><a href="checkout.html">Checkout Page</a></li>
-											<li><a href="wishlist.html">Wishlist Page</a></li>
-										</ul>
-									</div>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav>
-					</div>
-					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
-						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
-							<li class="shop_search">
-								<a class="search__active" href="#"></a>
-							</li>
-							<li class="wishlist"><a href="wishlist.html"></a></li>
-							<li class="shopcart">
-								<a href="cart.html"><span class="product_qun">3</span></a>
-							</li>
-
-							<li class="setting__bar__icon">
-								<a class="setting__active" href="#"></a>
-								<div class="searchbar__content setting__block">
-									<div class="content-inner">
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>My Account</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<div class="setting__menu">
-														<span><a href="#">My Account</a></span>
-														<span><a href="#">Sign In</a></span>
-														<span><a href="#">Create An Account</a></span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</header>
+		<header th:replace="user/fragments/header :: header"></header>
 		<!-- //Header -->
 		<!-- Start Search Popup -->
-		<div class="box-search-content search_active block-bg close__top">
-			<form id="search_mini_form" class="minisearch" action="#">
-				<div class="field__search">
-					<input type="text" placeholder="Search entire store here..." />
-					<div class="action">
-						<a href="#"><i class="zmdi zmdi-search"></i></a>
-					</div>
-				</div>
-			</form>
-			<div class="close__wrap">
-				<span>close</span>
-			</div>
-		</div>
+		<div th:replace="user/fragments/search_popup :: search_popup"></div>
 		<!-- End Search Popup -->
 
 		<!-- Start My Account Area -->
@@ -141,296 +108,16 @@
 		</section>
 		<!-- End My Account Area -->
 		<!-- Footer Area -->
-		<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
-			<div class="footer-static-top">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="footer__widget footer__menu">
-								<div class="ft__logo">
-									<a href="index.html">
-										<img src="images/logo/3.png" alt="logo" />
-									</a>
-								</div>
-								<div class="footer__content">
-									<ul class="social__net social__net--2 d-flex justify-content-center">
-										<li>
-											<a href="#"><i class="bi bi-facebook"></i></a>
-										</li>
-										<li>
-											<a href="#"><i class="bi bi-google"></i></a>
-										</li>
-										<li>
-											<a href="#"><i class="bi bi-twitter"></i></a>
-										</li>
-										<li>
-											<a href="#"><i class="bi bi-linkedin"></i></a>
-										</li>
-										<li>
-											<a href="#"><i class="bi bi-youtube"></i></a>
-										</li>
-									</ul>
-									<ul class="mainmenu d-flex justify-content-center">
-										<li><a href="index.html">Best Seller</a></li>
-										<li><a href="index.html">All Product</a></li>
-										<li><a href="index.html">Contact</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<footer th:replace="user/fragments/footer :: footer"></footer>
 		<!-- //Footer Area -->
 	</div>
 	<!-- //Main wrapper -->
-
 	<!-- JS Files -->
-	<script src="js/vendor/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/active.js"></script>
+	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/user/popper.min.js}"></script>
+	<script th:src="@{/js/user/bootstrap.min.js}"></script>
+	<script th:src="@{/js/user/plugins.js}"></script>
+	<script th:src="@{/js/user/active.js}"></script>
 </body>
 
 </html>
-=======
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Register</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="images/favicon.ico" />
-    <link rel="apple-touch-icon" href="images/icon.png" />
-
-    <!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Satisfy"
-      rel="stylesheet"
-    />
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/plugins.css" />
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Cusom css -->
-    <link rel="stylesheet" href="css/custom.css" />
-
-    <!-- Modernizer js -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-  </head>
-  <body>
-    <!-- Main wrapper -->
-    <div class="wrapper" id="wrapper">
-      <!-- Header -->
-      <header
-        id="wn__header"
-        class="header__area header__absolute sticky__header"
-      >
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 col-sm-6 col-6 col-lg-2">
-              <div class="logo">
-                <a href="index.html">
-                  <img
-                    src="images/logo/Rooks-Logo.png"
-                    class="logo"
-                    alt="logo images"
-                  />
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-8 d-none d-lg-block">
-              <nav class="mainmenu__nav">
-                <ul class="meninmenu d-flex justify-content-start">
-                  <li class="drop with--one--item">
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li class="drop">
-                    <a href="#">Shop</a>
-                  </li>
-
-                  <li class="drop">
-                    <a href="#">Categories</a>
-                    <div class="megamenu dropdown">
-                      <ul class="item item01">
-                        <li><a href="my-account.html">My Account</a></li>
-                        <li><a href="cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                        <li><a href="wishlist.html">Wishlist Page</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6 col-lg-2">
-              <ul
-                class="header__sidebar__right d-flex justify-content-end align-items-center"
-              >
-                <li class="shop_search">
-                  <a class="search__active" href="#"></a>
-                </li>
-                <li class="wishlist"><a href="wishlist.html"></a></li>
-                <li class="shopcart">
-                  <a href="cart.html"><span class="product_qun">3</span></a>
-                </li>
-
-                <li class="setting__bar__icon">
-                  <a class="setting__active" href="#"></a>
-                  <div class="searchbar__content setting__block">
-                    <div class="content-inner">
-                      <div class="switcher-currency">
-                        <strong class="label switcher-label">
-                          <span>My Account</span>
-                        </strong>
-                        <div class="switcher-options">
-                          <div class="switcher-currency-trigger">
-                            <div class="setting__menu">
-                              <span><a href="#">My Account</a></span>
-                              <span><a href="#">Sign In</a></span>
-                              <span><a href="#">Create An Account</a></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </header>
-      <!-- //Header -->
-      <!-- Start Search Popup -->
-      <div class="box-search-content search_active block-bg close__top">
-        <form id="search_mini_form" class="minisearch" action="#">
-          <div class="field__search">
-            <input type="text" placeholder="Search entire store here..." />
-            <div class="action">
-              <a href="#"><i class="zmdi zmdi-search"></i></a>
-            </div>
-          </div>
-        </form>
-        <div class="close__wrap">
-          <span>close</span>
-        </div>
-      </div>
-      <!-- End Search Popup -->
-
-      <!-- Start My Account Area -->
-      <section class="my_account_area pt--80 pb--55 bg--white">
-        <div class="container mt--100">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 col-12">
-              <div class="my__account__wrapper">
-                <h3 class="account__title">Register</h3>
-                <form action="#">
-                  <div class="account__form">
-                    <div class="input__box">
-                      <label>Email address <span>*</span></label>
-                      <input type="email" />
-                    </div>
-                    <div class="input__box">
-                      <label>Fullname<span>*</span></label>
-                      <input type="text" />
-                    </div>
-                    <div class="input__box">
-                      <label>Address<span>*</span></label>
-                      <input type="text" />
-                    </div>
-                    <div class="input__box">
-                      <label>Phone number<span>*</span></label>
-                      <input type="tel" />
-                    </div>
-                    <div class="input__box">
-                      <label>Password<span>*</span></label>
-                      <input type="password" />
-                    </div>
-                    <div class="input__box">
-                      <label>Confirm Password<span>*</span></label>
-                      <input type="password" />
-                    </div>
-                    <div class="form__btn">
-                      <button>Register</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End My Account Area -->
-      <!-- Footer Area -->
-      <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
-        <div class="footer-static-top">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="footer__widget footer__menu">
-                  <div class="ft__logo">
-                    <a href="index.html">
-                      <img src="images/logo/3.png" alt="logo" />
-                    </a>
-                  </div>
-                  <div class="footer__content">
-                    <ul
-                      class="social__net social__net--2 d-flex justify-content-center"
-                    >
-                      <li>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="bi bi-google"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="bi bi-youtube"></i></a>
-                      </li>
-                    </ul>
-                    <ul class="mainmenu d-flex justify-content-center">
-                      <li><a href="index.html">Best Seller</a></li>
-                      <li><a href="index.html">All Product</a></li>
-                      <li><a href="index.html">Contact</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- //Footer Area -->
-    </div>
-    <!-- //Main wrapper -->
-
-    <!-- JS Files -->
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/active.js"></script>
-  </body>
-</html>
->>>>>>> e515bdc9a7d1e99d69b8dc9701f4b60d8765487b

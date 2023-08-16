@@ -9,8 +9,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Favicons -->
-	<link th:href="@{/images/favicon.ico}" rel="shortcut icon">
-	<link th:href="@{/images/icon.png}" rel=" apple-touch-icon" }>
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<link rel="apple-touch-icon" th:href="@{/images/icon.png}" }>
 
 	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
 	<link th:href="@{/css/user/open_sans.css}" rel="stylesheet">
@@ -18,7 +18,12 @@
 	<link th:href="@{/css/user/roboto.css}" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link th:href="@{/css/user/bootstrap.min.css}" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/user/bootstrap.min.css}">
+	<!--  <link rel="stylesheet" th:href="@{/css/user/plugins.css}"> -->
+	<link rel="stylesheet" th:href="@{/css/user/style.css}">
+
+	<!-- Cusom css -->
+	<link rel="stylesheet" th:href="@{/css/user/custom.css}">
 
 	<!-- Plugins css -->
 	<link th:href="@{/css/user/font-awesome.min.css}" rel="stylesheet">
@@ -36,31 +41,27 @@
 	<link th:href="@{/css/user/fotorama.css}" rel="stylesheet">
 	<link th:href="@{/css/user/jquery-ui.min.css}" rel="stylesheet">
 	<link th:href="@{/css/user/lightbox.css}" rel="stylesheet">
-	<link th:href="@{/css/user/style.css}" rel="stylesheet">
-
-	<!-- Cusom css -->
-	<link th:href="@{/css/user/custom.css}" rel="stylesheet">
-
-	<!-- Modernizer js -->
-	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
-
 </head>
 
 <body class="sb-nav-fixed">
-	<div class="brown--color box-search-content search_active block-bg close__top" th:fragment="search_popup">
-		<form id="search_mini_form" class="minisearch" action="#">
-			<div class="field__search">
-				<input type="text" placeholder="Search entire store here...">
-				<div class="action">
-					<a href="#"><i class="zmdi zmdi-search"></i></a>
+	<div class="ht__bradcaump__area bg-image--4" th:fragment="bradcaump_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="bradcaump__inner text-center">
+						<h2 class="bradcaump-title">Checkout</h2>
+						<nav class="bradcaump-content">
+							<a class="breadcrumb_item" href="index.html">Home</a>
+							<span class="brd-separetor">/</span>
+							<span class="breadcrumb_item active">Checkout</span>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</form>
-		<div class="close__wrap">
-			<span>close</span>
 		</div>
 	</div>
-
+	<!-- Modernizer js -->
+	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
 	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/user/popper.min.js}"></script>
 	<script th:src="@{/js/user/bootstrap.min.js}"></script>

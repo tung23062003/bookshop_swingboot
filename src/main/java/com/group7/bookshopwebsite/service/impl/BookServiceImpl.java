@@ -1,6 +1,7 @@
 package com.group7.bookshopwebsite.service.impl;
 
 import com.group7.bookshopwebsite.dto.BookSearchDTO;
+import com.group7.bookshopwebsite.dto.UserSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.Category;
 import com.group7.bookshopwebsite.repository.BookRepository;
@@ -105,4 +106,20 @@ public class BookServiceImpl implements BookService {
             return bookRepository.findAll(pageable);
         }
     }
+
+    @Override
+    public Page<Book> searchBooksUser(UserSearchDTO search, Pageable pageable) {
+        Long categoryId = search.getCategoryId();
+        String keyword = search.getKeyword();
+        String sortBy = search.getSortBy();
+
+return bookRepository.findByTitleContaining(keyword,pageable);
+    }
+
+    @Override
+    public Page<Book> getAllBooksForUsers(Pageable pageable) {
+        return bookRepository.findAll(pageable);
+    }
+
+
 }

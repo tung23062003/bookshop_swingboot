@@ -39,7 +39,7 @@
 	<link th:href="@{/css/user/lightbox.css}" rel="stylesheet">
 	<link th:href="@{/css/user/style.css}" rel="stylesheet">
 
-	<!-- Cusom css -->
+
 	<link th:href="@{/css/user/custom.css}" rel="stylesheet">
 
 	<!-- Modernizer js -->
@@ -84,37 +84,31 @@
 						<div class="wn__single__product">
 							<div class="row">
 								<div class="col-lg-6 col-12">
-									<div class="wn__fotorama__wrapper">
-										<img class="product-details-img" src="images/prod.jpg" alt="" />
+									<div class="wn__fotorama__wrapper img-container">
+										<img class="product-details-img" th:src="@{/cover_images/__${product.coverImage}__}" alt="" />
 									</div>
 								</div>
 								<div class="col-lg-6 col-12">
 									<div class="product__info__main">
-										<h1>Chaz Kangeroo Hoodie</h1>
+										<h1 th:text="${product.title}"></h1>
 
 										<div class="price-box">
-											<span>$52.00</span>
+											<span th:text="${product.salePrice}" ></span>
 										</div>
 										<div class="product__overview">
-											<p>
-												Ideal for cold-weather training or work outdoors, the
-												Chaz Hoodie promises superior warmth with every wear.
-												Thick material blocks out the wind as ribbed cuffs and
-												bottom band seal in body heat.
+											<p th:text="${product.description}">
+
 											</p>
-											<p>
-												Ideal for cold-weather training or work outdoors, the
-												Chaz Hoodie promises superior warmth with every wear.
-											</p>
+
 										</div>
 										<div class="box-tocart d-flex">
 											<span>Quantity</span>
 											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
 												title="Qty" type="number" />
 											<div class="addtocart__actions">
-												<button class="btn btn-danger text-light py-2 px-4" title="Add to Cart">
+												<a class="btn btn-danger text-light py-2 px-4" title="Add to Cart">
 													Add to Cart
-												</button>
+												</a>
 											</div>
 										</div>
 										<div class="box-tocart d-flex">
@@ -140,34 +134,31 @@
 									<table>
 										<tr>
 											<th>ID</th>
-											<td>ididididididididididididididididididididid</td>
+											<td th:text="${'#'+ product.id }"></td>
+										</tr>
+
+										<tr>
+											<th>Authors</th>
+											<td th:text="${product.author }"></td>
 										</tr>
 										<tr>
-											<th>book title</th>
-											<td>id</td>
+											<th>Publisher</th>
+											<td th:text="${product.publisher }"></td>
 										</tr>
 										<tr>
-											<th>authors</th>
-											<td>id</td>
+											<th>Quantity in stock</th>
+											<td th:text="${product.qty}"></td>
+										</tr>
+
+										<tr>
+											<th>Number of pages</th>
+											<td th:text="${product.numberOfPages}"></td>
 										</tr>
 										<tr>
-											<th>publisher</th>
-											<td>id</td>
+											<th>Published date</th>
+											<td th:text="${#dates.format(product.publishedDate, 'dd-MM-yyyy')}"></td>
 										</tr>
-										<tr>
-											<th>quantity in stock</th>
-											<td>id</td>
-										</tr>
-										<tr>
-											<th>description</th>
-											<td>
-												Lorem ipsum dolor sit amet consectetur, adipisicing
-												elit. Debitis atque nihil provident laborum deleniti
-												voluptatem quia, quasi dignissimos! Ipsam facilis
-												numquam blanditiis veniam, aut quis voluptatibus culpa
-												nihil dolor odit.
-											</td>
-										</tr>
+
 									</table>
 								</div>
 								<!-- End Single Tab Content -->

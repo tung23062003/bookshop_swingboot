@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.controller;
 
+import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.entity.Contact;
 import com.group7.bookshopwebsite.service.ContactService;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/contact")
-public class ContactController {
+public class ContactController extends BaseController {
 
     private ContactService contactService;
     @GetMapping

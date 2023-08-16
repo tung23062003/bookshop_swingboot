@@ -76,7 +76,7 @@
 
 						<li class="wishlist"><a th:href="@{/wishlist}"></a></li>
 						<li class="shopcart">
-							<a th:href="@{/cart}"><span class="product_qun">3</span></a>
+							<a th:href="@{/cart}"><span class="product_qun" th:text="${cartItemCount}" id="cart-quantity"></span></a>
 						</li>
 
 						<li class="setting__bar__icon">

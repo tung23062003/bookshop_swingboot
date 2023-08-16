@@ -94,6 +94,14 @@
 		.ft__logo a img {
 			max-width: 20%;
 		}
+		.truncate-text {
+			display: inline-block;
+			max-width: 150px; /* Điều chỉnh chiều rộng tối đa của văn bản */
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
 	</style>
 
 </head>
@@ -162,7 +170,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
+					<div class="col-lg-6 col-md-12 col-sm-12">
 						<div class="wn__order__box">
 							<h3 class="onder__title">Your order</h3>
 							<ul class="order__total">
@@ -170,36 +178,39 @@
 								<li>Total</li>
 							</ul>
 							<ul class="order_product">
-								<li>Buscipit at magna × 1<span>$48.00</span></li>
-								<li>Buscipit at magna × 1<span>$48.00</span></li>
-								<li>Buscipit at magna × 1<span>$48.00</span></li>
-								<li>Buscipit at magna × 1<span>$48.00</span></li>
+								<li th:each="cartItem : ${cart.cartItems}" class="d-flex justify-content-between align-items-center mb-2">
+									<div class="d-flex align-items-center">
+										<span class="truncate-text mr-2" th:text="${cartItem.title}"></span>
+										× <span th:text="${cartItem.quantity}" class="ml-1"></span>
+									</div>
+									<span th:text="'$' + ${(cartItem.price * cartItem.quantity)}" class="text-right"></span>
+								</li>
 							</ul>
-
 							<ul class="total__amount">
-								<li>Order Total <span>$223.00</span></li>
+								<li class="d-flex justify-content-between">
+									<span>Order Total</span>
+									<span th:text="'$' + ${(totalCart)}" class="text-right"></span>
+								</li>
 							</ul>
 						</div>
-						<div
-								id="accordion"
-								class="checkout_accordion mt--30"
-								role="tablist"
-						>
+						<div id="accordion" class="checkout_accordion mt--30" role="tablist">
 							<div class="payment">
 								<div class="che__header" role="tab" id="headingThree">
-									<a
-											class="collapsed checkout__title"
-											data-toggle="collapse"
-											href="#collapseThree"
-											aria-expanded="false"
-											aria-controls="collapseThree"
-									>
+									<a class="collapsed checkout__title"
+									   data-toggle="collapse"
+									   href="#collapseThree"
+									   aria-expanded="false"
+									   aria-controls="collapseThree">
 										<span>Cash on Delivery</span>
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
+
+
 				</div>
 			</div>
 		</section>

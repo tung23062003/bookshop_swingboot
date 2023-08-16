@@ -81,7 +81,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 ol-lg-12">
-						<form action="#">
+
 							<div class="table-content wnro__table table-responsive">
 								<table>
 									<thead>
@@ -95,75 +95,37 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
+
+									<tr th:each="cartItem : ${cart.cartItems}">
 										<td class="product-thumbnail">
-											<a href="#"
-											><img
-													src="images/product/sm-3/1.jpg"
-													alt="product img"
-											/></a>
+											<a href="#">
+												<img th:src="@{/cover_images/__${cartItem.coverImage}__}" alt="product img" />
+											</a>
 										</td>
 										<td class="product-name">
-											<a href="#">Natoque penatibus</a>
+											<a href="#" th:text="${cartItem.title}"></a>
 										</td>
 										<td class="product-price">
-											<span class="amount">$165.00</span>
+											<span class="amount" th:text="${cartItem.price}"></span>
 										</td>
 										<td class="product-quantity">
-											<input type="number" value="1" />
+											<input th:min="1" type="number" th:value="${cartItem.quantity}"
+												   th:attr="onchange='updateCartItemQuantity(' + ${cartItem.bookId} + ', ' + this.value + ')'" />
 										</td>
-										<td class="product-subtotal">$165.00</td>
-										<td class="product-remove"><a href="#">X</a></td>
+
+										<td class="product-subtotal" th:text="${cartItem.price * cartItem.quantity}"></td>
+										<td class="product-remove"><a th:href="@{/cart/remove-cart-item/__${cartItem.bookId}__}">X</a></td>
 									</tr>
-									<tr>
-										<td class="product-thumbnail">
-											<a href="#"
-											><img
-													src="images/product/sm-3/2.jpg"
-													alt="product img"
-											/></a>
-										</td>
-										<td class="product-name">
-											<a href="#">Quisque fringilla</a>
-										</td>
-										<td class="product-price">
-											<span class="amount">$50.00</span>
-										</td>
-										<td class="product-quantity">
-											<input type="number" value="1" />
-										</td>
-										<td class="product-subtotal">$50.00</td>
-										<td class="product-remove"><a href="#">X</a></td>
-									</tr>
-									<tr>
-										<td class="product-thumbnail">
-											<a href="#"
-											><img
-													src="images/product/sm-3/3.jpg"
-													alt="product img"
-											/></a>
-										</td>
-										<td class="product-name">
-											<a href="#">Vestibulum suscipit</a>
-										</td>
-										<td class="product-price">
-											<span class="amount">$50.00</span>
-										</td>
-										<td class="product-quantity">
-											<input type="number" value="1" />
-										</td>
-										<td class="product-subtotal">$50.00</td>
-										<td class="product-remove"><a href="#">X</a></td>
-									</tr>
+
 									</tbody>
 								</table>
 							</div>
-						</form>
+
 						<div class="cartbox__btn">
 							<ul
 									class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between"
 							>
-								<li><a href="#">Check Out</a></li>
+								<li><a th:href="@{/cart/checkout}">Check Out</a></li>
 
 								<li>
 									<div
@@ -171,7 +133,7 @@
 											style="display: flex; gap: 50px; background-color: black"
 									>
 										<span>Total</span>
-										<span>$140</span>
+										<span th:text="${totalCart}">{</span>
 									</div>
 								</li>
 							</ul>
@@ -184,6 +146,25 @@
 		<!-- Footer Area -->
 		<footer th:replace="user/fragments/footer :: footer"></footer>
 		<!-- //Footer Area -->
+
+		<script>
+			function updateCartItemQuantity(productId, newQuantity) {
+				console.log(newQuantity)
+				$.ajax({
+					type: "POST",
+					url: "/cart/update-cart-item",
+					data: {
+						productId: productId,
+						quantity: newQuantity
+					},
+					success: function(response) {
+						// Update the cart page or perform any necessary actions
+						// based on the successful response.
+						location.reload();
+					}
+				});
+			}
+		</script>
 
 	</div>
 	<!-- //Main wrapper -->

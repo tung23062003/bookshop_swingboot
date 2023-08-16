@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class CartItemDTO {
     private Long bookId;
+    private String coverImage;
     private String title;
     private Double price;
     private Integer quantity;

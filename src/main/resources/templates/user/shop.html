@@ -135,18 +135,20 @@
 
 									</a>
 
-									<!-- Add to cart button -->
-									<div class="product__hover__info">
 
-										<a href="cart.html" class="btn btn-dark block"  th:text="'Add to Cart'"></a>
-
-									</div>
 
 										<p class="title-container">
 											<a th:href="@{/shop/product/__${book.id}__}" th:text="${book.title}"></a>
 										</p>
 
+
 										<h4 th:text="${book.salePrice + 'VND'}"></h4>
+									<!-- Add to cart button -->
+									<div class="product__hover__info">
+
+										<button href="cart.html" class="btn btn-dark block"  th:onclick="'addToCart(' + ${book.id} + ')'" th:text="'Add to Cart'"></button>
+
+									</div>
 
 
 								</div>
@@ -158,6 +160,42 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			function addToCart(productId) {
+				var data = JSON.stringify({ "productId": productId, "quantity": 1 });
+
+				console.log(productId)
+				$.ajax({
+					type: "POST",
+					url: "/cart/add-to-cart",
+					contentType: "application/json",
+					data: data,
+					success: function (data) {
+						alert("Item added to cart successfully.");
+						// Update cart quantity in the header
+						updateCartQuantity();
+					},
+					error: function () {
+						alert("Error adding item to cart.");
+					}
+				});
+			}
+
+			function updateCartQuantity() {
+				$.ajax({
+					type: "GET",
+					url: "/cart/cart-item-count",  // Replace with the actual endpoint to get cart item count
+					success: function (data) {
+						$("#cart-quantity").text(data); // Update the cart quantity in the header
+					},
+					error: function () {
+						console.log("Error updating cart quantity.");
+					}
+				});
+			}
+
+		</script>
+
 		<!-- End Shop Page -->
 		<!-- Footer Area -->
 		<footer th:replace="user/fragments/footer :: footer"></footer>

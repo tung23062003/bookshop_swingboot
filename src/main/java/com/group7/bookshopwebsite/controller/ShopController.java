@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.controller;
 
+import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.dto.UserSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.Category;
@@ -18,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/shop")
-public class ShopController {
+public class ShopController extends BaseController {
 
     private CategoryService categoryService;
     private BookService bookService;

@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.service;
 
+
 import com.group7.bookshopwebsite.dto.BookSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
 import org.springframework.data.domain.Page;
@@ -21,4 +22,5 @@ public interface BookService {
     List<Book> getAllBooks();
 
     Page<Book> searchBooks(BookSearchDTO search, Pageable pageable);
+
 }

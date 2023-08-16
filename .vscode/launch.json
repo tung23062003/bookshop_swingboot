@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-BookshopwebsiteApplication<bookshopwebsite>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.group7.bookshopwebsite.BookshopwebsiteApplication",
+      "projectName": "bookshopwebsite",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

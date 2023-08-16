@@ -49,10 +49,14 @@
 					<li class="breadcrumb-item">
 						<a th:href="@{/admin/books_management}">Sản Phẩm</a>
 					</li>
+
 					<li class="breadcrumb-item active">Thêm/Cập nhật Sản Phẩm</li>
 				</ol>
 
 				<div class="container mt-5">
+					<div th:if="${message}" class="alert alert-success" role="alert">
+						<p th:text="${message}"></p>
+					</div>
 					<h2>Thêm/Cập nhật Sản phẩm</h2>
 					<div th:if="${error}" class="alert alert-danger" role="alert">
 						${error}

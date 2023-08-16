@@ -22,6 +22,11 @@
 
 				<!-- ... -->
 				<div class="container mt-5">
+
+					<div th:if="${message}" class="alert alert-primary" role="alert">
+						<p th:text="${message}"></p>
+					</div>
+
 					<h1>Danh Sách Danh Mục</h1>
 					<a th:href="@{/admin/categories_management/add}" class="btn btn-primary mb-3 mt-3 mb-4">Thêm danh
 						mục</a>
@@ -56,7 +61,7 @@
 								<a th:href="@{/admin/categories_management(page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
 
 							</li>
-							<li th:classappend="${1+currentPage == totalPages} ? disabled : ''" class="page-item">
+							<li th:classappend="${1 + currentPage == totalPages} ? disabled : ''" class="page-item">
 								<a th:href="@{/admin/categories_management(page=${totalPages})}" class="page-link">Trang cuối</a>
 
 							</li>

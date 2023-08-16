@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -36,13 +37,17 @@ public class AdminCategoryController {
     }
 
     @PostMapping("/add_or_update")
-    public String addOrUpdateCategory(@ModelAttribute Category category) {
+    public String addOrUpdateCategory(@ModelAttribute Category category
+    , RedirectAttributes redirectAttributes) {
         if (category.getId() != null) {
             // Có ID -> Cập nhật
             categoryService.updateCategory(category.getId(), category);
+            redirectAttributes.addFlashAttribute("message","Cập nhật danh mục thành công");
+
         } else {
             // Không có ID -> Thêm mới
             categoryService.addCategory(category);
+            redirectAttributes.addFlashAttribute("message","Thêm mới danh mục thành công");
         }
         return "redirect:/admin/categories_management";
     }
@@ -53,8 +58,11 @@ public class AdminCategoryController {
         return "admin/category_add_or_update";
     }
     @GetMapping("/delete/{categoryId}")
-    public String deleteCategory(@PathVariable Long categoryId) {
+    public String deleteCategory(@PathVariable Long categoryId,
+                                 RedirectAttributes redirectAttributes) {
         categoryService.deleteCategory(categoryId);
+        redirectAttributes.addFlashAttribute("message","Xoá danh mục thành công");
+
         return "redirect:/admin/categories_management";
     }
 }

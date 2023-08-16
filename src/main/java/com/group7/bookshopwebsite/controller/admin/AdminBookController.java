@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 
@@ -58,7 +59,8 @@ public class AdminBookController {
     public String addOrUpdateBook(@ModelAttribute("book") @Valid Book book,
                                   BindingResult bindingResult,
                                   @RequestParam("cover_image") MultipartFile coverImage,
-                                  Model model) throws IOException {
+                                  Model model
+    ,RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
             List<Category> categories = categoryService.getAllCategories();
@@ -81,6 +83,9 @@ public class AdminBookController {
                 }
 
                 bookService.editBook(book, coverImage);
+                Book editedBook = bookService.getBookById(book.getId());
+                model.addAttribute("book",editedBook);
+                redirectAttributes.addFlashAttribute("message","Sửa thông tin sách thành công!");
             }
         } else {
             Book exist = bookService.getBookByName(book.getTitle());
@@ -89,7 +94,7 @@ public class AdminBookController {
                 model.addAttribute("error", "Đã tồn tại sách với tên này");
                 return "admin/books_add_or_update";
             }else bookService.addBook(book, coverImage);
-
+            redirectAttributes.addFlashAttribute("message","Thêm sách thành công!");
         }
 
         return "redirect:/admin/books_management/add";
@@ -109,9 +114,13 @@ public class AdminBookController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteBook(@PathVariable Long id) {
+    public String deleteBook(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         bookService.deleteBook(id);
+
+        // Add a success message to the model
+        redirectAttributes.addFlashAttribute("message", "Xoá sách thành công!");
 
         return "redirect:/admin/books_management";
     }
+
 }

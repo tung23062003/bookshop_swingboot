@@ -20,6 +20,10 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
+					<div th:if="${message}" class="alert alert-success" role="alert">
+						<p th:text="${message}"></p>
+					</div>
+
 					<h1 class="mt-4">Quản lý danh mục</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">

@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Rook Book Store</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicons -->
+	<link th:href="@{/images/favicon.ico}" rel="shortcut icon">
+	<link th:href="@{/images/icon.png}" rel=" apple-touch-icon" }>
+
+	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
+	<link th:href="@{/css/user/open_sans.css}" rel="stylesheet">
+	<link th:href="@{/css/user/poppins.css}" rel="stylesheet">
+	<link th:href="@{/css/user/roboto.css}" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link th:href="@{/css/user/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Plugins css -->
+	<link th:href="@{/css/user/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/bicon.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/pe-icon-7-stroke.css}" rel="stylesheet">
+	<link th:href="@{/css/user/slick.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fakeloader.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-slider.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-preview-2.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.carousel.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.theme.default.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/material-design-iconic-font.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/animation.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fancybox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/mainmenu.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fotorama.css}" rel="stylesheet">
+	<link th:href="@{/css/user/jquery-ui.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/lightbox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/style.css}" rel="stylesheet">
+
+	<!-- Cusom css -->
+	<link th:href="@{/css/user/custom.css}" rel="stylesheet">
+
+	<!-- Modernizer js -->
+	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
+
+	<style>
+		.mainmenu__nav .meninmenu li a {
+			color: white;
+		}
+
+		.product-details-img {
+			max-width: 450px;
+		}
+	</style>
+
+	<style>
+		.ft__logo a img {
+			max-width: 20%;
+		}
+	</style>
+
+</head>
+
+
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+		<!-- Header -->
+		<header th:replace="user/fragments/header :: header"></header>
+		<!-- //Header -->
+		<!-- Start Search Popup -->
+		<div th:replace="user/fragments/search_popup :: search_popup"></div>
+		<!-- End Search Popup -->
+		<!-- Start Bradcaump area -->
+		<div th:replace="user/fragments/bradcaump_area :: bradcaump_area"></div>
+		<!-- End Bradcaump area -->
+		<!-- Start main Content -->
+		<div class="maincontent bg--white pt--80 pb--55">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-12">
+						<div class="wn__single__product">
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<div class="wn__fotorama__wrapper">
+										<img class="product-details-img" src="images/prod.jpg" alt="" />
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="product__info__main">
+										<h1>Chaz Kangeroo Hoodie</h1>
+
+										<div class="price-box">
+											<span>$52.00</span>
+										</div>
+										<div class="product__overview">
+											<p>
+												Ideal for cold-weather training or work outdoors, the
+												Chaz Hoodie promises superior warmth with every wear.
+												Thick material blocks out the wind as ribbed cuffs and
+												bottom band seal in body heat.
+											</p>
+											<p>
+												Ideal for cold-weather training or work outdoors, the
+												Chaz Hoodie promises superior warmth with every wear.
+											</p>
+										</div>
+										<div class="box-tocart d-flex">
+											<span>Quantity</span>
+											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
+												title="Qty" type="number" />
+											<div class="addtocart__actions">
+												<button class="btn btn-danger text-light py-2 px-4" title="Add to Cart">
+													Add to Cart
+												</button>
+											</div>
+										</div>
+										<div class="box-tocart d-flex">
+											<div class="addtocart__actions">
+												<a href="#" class="btn-dark text-light py-2 px-4 btn"
+													title="Add to wishlist">
+													Add to Wishlist
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="product__info__detailed">
+							<div class="pro_details_nav nav justify-content-start" role="tablist">
+								<a class="nav-item nav-link active" data-toggle="tab" href="#nav-details"
+									role="tab">Details</a>
+							</div>
+							<div class="tab__container">
+								<!-- Start Single Tab Content -->
+								<div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
+									<table>
+										<tr>
+											<th>ID</th>
+											<td>ididididididididididididididididididididid</td>
+										</tr>
+										<tr>
+											<th>book title</th>
+											<td>id</td>
+										</tr>
+										<tr>
+											<th>authors</th>
+											<td>id</td>
+										</tr>
+										<tr>
+											<th>publisher</th>
+											<td>id</td>
+										</tr>
+										<tr>
+											<th>quantity in stock</th>
+											<td>id</td>
+										</tr>
+										<tr>
+											<th>description</th>
+											<td>
+												Lorem ipsum dolor sit amet consectetur, adipisicing
+												elit. Debitis atque nihil provident laborum deleniti
+												voluptatem quia, quasi dignissimos! Ipsam facilis
+												numquam blanditiis veniam, aut quis voluptatibus culpa
+												nihil dolor odit.
+											</td>
+										</tr>
+									</table>
+								</div>
+								<!-- End Single Tab Content -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End main Content -->
+		<!-- Start Search Popup -->
+		<div th:replace="user/fragments/search_popup :: search_popup"></div>
+		<!-- End Search Popup -->
+		<!-- Footer Area -->
+		<footer th:replace="user/fragments/footer :: footer"></footer>
+		<!-- //Footer Area -->
+	</div>
+	<!-- //Main wrapper -->
+	<!-- JS Files -->
+	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/user/popper.min.js}"></script>
+	<script th:src="@{/js/user/bootstrap.min.js}"></script>
+	<script th:src="@{/js/user/plugins.js}"></script>
+	<script th:src="@{/js/user/active.js}"></script>
+</body>
+
+</html>

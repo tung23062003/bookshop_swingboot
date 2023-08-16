@@ -1,9 +1,6 @@
 package com.group7.bookshopwebsite.service.impl;
 
-import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.User;
-import com.group7.bookshopwebsite.repository.UserRepository;
-import com.group7.bookshopwebsite.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

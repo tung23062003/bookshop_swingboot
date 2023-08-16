@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Rook Book Store</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicons -->
+	<link th:href="@{/images/favicon.ico}" rel="shortcut icon">
+	<link th:href="@{/images/icon.png}" rel=" apple-touch-icon" }>
+
+	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
+	<link th:href="@{/css/user/open_sans.css}" rel="stylesheet">
+	<link th:href="@{/css/user/poppins.css}" rel="stylesheet">
+	<link th:href="@{/css/user/roboto.css}" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link th:href="@{/css/user/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Plugins css -->
+	<link th:href="@{/css/user/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/bicon.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/pe-icon-7-stroke.css}" rel="stylesheet">
+	<link th:href="@{/css/user/slick.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fakeloader.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-slider.css}" rel="stylesheet">
+	<link th:href="@{/css/user/nivo-preview-2.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.carousel.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/owl.theme.default.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/material-design-iconic-font.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/animation.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fancybox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/mainmenu.css}" rel="stylesheet">
+	<link th:href="@{/css/user/fotorama.css}" rel="stylesheet">
+	<link th:href="@{/css/user/jquery-ui.min.css}" rel="stylesheet">
+	<link th:href="@{/css/user/lightbox.css}" rel="stylesheet">
+	<link th:href="@{/css/user/style.css}" rel="stylesheet">
+
+	<!-- Cusom css -->
+	<link th:href="@{/css/user/custom.css}" rel="stylesheet">
+
+	<!-- Modernizer js -->
+	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
+
+	<style>
+		.mainmenu__nav .meninmenu li a {
+			color: white;
+		}
+	</style>
+
+	<style>
+		.ft__logo a img {
+			max-width: 20%;
+		}
+	</style>
+
+</head>
+
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+
+		<!-- Header -->
+		<header th:replace="user/fragments/header :: header"></header>
+		<!-- //Header -->
+		<!-- Start Search Popup -->
+		<div class="box-search-content search_active block-bg close__top"
+			th:replace="user/fragments/search_popup :: search_popup">
+		</div>
+		<!-- End Search Popup -->
+		<!-- Start Bradcaump area -->
+		<div th:replace="user/fragments/bradcaump_area :: bradcaump_area"></div>
+		<!-- End Bradcaump area -->
+		<!-- cart-main-area start -->
+		<div class="cart-main-area section-padding--lg bg--white">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+						<form action="#">
+							<div class="table-content wnro__table table-responsive">
+								<table>
+									<thead>
+										<tr class="title-top">
+											<th class="product-thumbnail">Image</th>
+											<th class="product-name">Product</th>
+											<th class="product-price">Price</th>
+											<th class="product-quantity">Quantity</th>
+											<th class="product-subtotal">Total</th>
+											<th class="product-remove">Remove</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="product-thumbnail"><a href="#"><img
+														src="images/product/sm-3/1.jpg" alt="product img"></a></td>
+											<td class="product-name"><a href="#">Natoque penatibus</a></td>
+											<td class="product-price"><span class="amount">$165.00</span></td>
+											<td class="product-quantity"><input type="number" value="1"></td>
+											<td class="product-subtotal">$165.00</td>
+											<td class="product-remove"><a href="#">X</a></td>
+										</tr>
+										<tr>
+											<td class="product-thumbnail"><a href="#"><img
+														src="images/product/sm-3/2.jpg" alt="product img"></a></td>
+											<td class="product-name"><a href="#">Quisque fringilla</a></td>
+											<td class="product-price"><span class="amount">$50.00</span></td>
+											<td class="product-quantity"><input type="number" value="1"></td>
+											<td class="product-subtotal">$50.00</td>
+											<td class="product-remove"><a href="#">X</a></td>
+										</tr>
+										<tr>
+											<td class="product-thumbnail"><a href="#"><img
+														src="images/product/sm-3/3.jpg" alt="product img"></a></td>
+											<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+											<td class="product-price"><span class="amount">$50.00</span></td>
+											<td class="product-quantity"><input type="number" value="1"></td>
+											<td class="product-subtotal">$50.00</td>
+											<td class="product-remove"><a href="#">X</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</form>
+						<div class="cartbox__btn">
+							<ul
+								class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+								<li><a href="#">Coupon Code</a></li>
+								<li><a href="#">Apply Code</a></li>
+								<li><a href="#">Update Cart</a></li>
+								<li><a href="#">Check Out</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-6 offset-lg-6">
+						<div class="cartbox__total__area">
+							<div class="cartbox-total d-flex justify-content-between">
+								<ul class="cart__total__list">
+									<li>Cart total</li>
+									<li>Sub Total</li>
+								</ul>
+								<ul class="cart__total__tk">
+									<li>$70</li>
+									<li>$70</li>
+								</ul>
+							</div>
+							<div class="cart__total__amount">
+								<span>Grand Total</span>
+								<span>$140</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- cart-main-area end -->
+		<!-- Footer Area -->
+		<footer th:replace="user/fragments/footer :: footer"></footer>
+		<!-- //Footer Area -->
+
+	</div>
+	<!-- //Main wrapper -->
+	<!-- JS Files -->
+	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/user/popper.min.js}"></script>
+	<script th:src="@{/js/user/bootstrap.min.js}"></script>
+	<script th:src="@{/js/user/plugins.js}"></script>
+	<script th:src="@{/js/user/active.js}"></script>
+
+</body>
+
+</html>

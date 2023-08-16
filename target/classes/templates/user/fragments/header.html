@@ -64,30 +64,17 @@
 								<a th:href="@{/home}">Home</a>
 							</li>
 							<li class="drop">
-								<a href="#">Shop</a>
+								<a th:href="@{/shop}">Shop</a>
 							</li>
 
-							<li class="drop">
-								<a href="#">Categories</a>
-								<div class="megamenu dropdown">
-									<ul class="item item01">
-										<li><a th:href="@{/user/my-account}">My Account</a></li>
-										<li><a th:href="@{/user/cart}">Cart Page</a></li>
-										<li><a th:href="@{/user/checkout}">Checkout Page</a></li>
-										<li><a th:href="@{/user/wishlist}">Wishlist Page</a></li>
-									</ul>
-								</div>
-							</li>
-							<li><a href="@{/no-auth/contact}">Contact</a></li>
+							<li><a th:href="@{/contact}">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 					<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
-						<li class="shop_search">
-							<a class="search__active" href="#"></a>
-						</li>
-						<li class="wishlist"><a th:href="@{/user/wishlist}"></a></li>
+
+						<li class="wishlist"><a th:href="@{/wishlist}"></a></li>
 						<li class="shopcart">
 							<a th:href="@{/cart}"><span class="product_qun">3</span></a>
 						</li>
@@ -104,6 +91,7 @@
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
 													<span><a href="#">My Account</a></span>
+													<span><a th:href="@{/cart/checkout}">Checkout</a></span>
 													<span><a th:href="@{/login}">Sign In</a></span>
 													<span><a th:href="@{/register}">Create An Account</a></span>
 												</div>
@@ -118,6 +106,9 @@
 			</div>
 		</div>
 	</header>
+
+
+
 	<!-- JS Files -->
 	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/user/popper.min.js}"></script>

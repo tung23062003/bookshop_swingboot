@@ -46,6 +46,24 @@
 	<script th:src="@{/js/user/vendor/modernizr-3.5.0.min.js}"></script>
 
 	<style>
+
+		.prod{
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+		.product_img{
+			max-height: 300px;
+			overflow: hidden;
+			display: block;
+		}
+		.product_img img{
+
+			height: 100%;
+		}
+		.title-container{
+			height: 60px;
+		}
 		.mainmenu__nav .meninmenu li a {
 			color: white;
 		}
@@ -65,9 +83,7 @@
 		<!-- Header -->
 		<header th:replace="user/fragments/header :: header"></header>
 		<!-- //Header -->
-		<!-- Start Search Popup -->
-		<div th:replace="user/fragments/search_popup :: search_popup"></div>
-		<!-- End Search Popup -->
+
 		<!-- Start Bradcaump area -->
 		<div th:replace="user/fragments/bradcaump_area :: bradcaump_area"></div>
 		<!-- End Bradcaump area -->
@@ -78,114 +94,66 @@
 					<div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
 						<div class="shop__sidebar">
 							<aside class="wedget__categories poroduct--cat">
-								<h3 class="wedget__title">Product Categories</h3>
-								<ul>
-									<li>
-										<a href="#">Biography </a>
-									</li>
-									<li>
-										<a href="#">Business </a>
-									</li>
-									<li>
-										<a href="#">Cookbooks </a>
-									</li>
-									<li>
-										<a href="#">Health & Fitness </a>
-									</li>
-									<li>
-										<a href="#">History </a>
-									</li>
-								</ul>
+								<form th:action="@{/shop}" th:object="${searchModel}" method="get">
+									<h3 class="wedget__title">Categories</h3>
+									<ul>
+										<li th:each="category : ${categories}">
+											<label>
+												<input type="radio" name="categoryId" th:field="*{categoryId}" th:value="${category.id}" >
+												<span th:text="${category.name}"></span>
+											</label>
+										</li>
+									</ul>
+
+									<h3 class="mt--40 wedget__title">Sort by</h3>
+									<select name="sortBy" id="sort-select" class="shot__byselect w--100 mr-3 ml-0" th:field="*{sortBy}">
+										<option value="" selected>Select sorting</option>
+										<option value="priceLowToHigh">Price: Low to High</option>
+										<option value="priceHighToLow">Price: High to Low</option>
+										<option value="newest">Newest</option>
+										<option value="oldest">Oldest</option>
+									</select>
+
+									<h3 class="wedget__title w--100 mr-3 ml-0 mt--40">Keywords</h3>
+									<div class="input-group">
+										<input type="text" class="form-control" th:field="*{keyword}" placeholder="Search...">
+									</div>
+									<button type="submit" class="mt-3 btn btn-dark">Search</button>
+								</form>
 							</aside>
 						</div>
 					</div>
-					<div class="col-lg-9 col-12 order-1 order-lg-2">
-						<div class="row">
-							<div class="col-lg-12">
-								<div
-									class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
-									<div class="orderby__wrapper">
-										<span>Sort By</span>
-										<select class="shot__byselect">
-											<option>Default sorting</option>
-											<option>HeadPhone</option>
-										</select>
+					<div class="col-lg-9 col-12 order-1 order-lg-2 mt-3">
+
+						<div class="container">
+							<div class="row">
+								<div th:each="book : ${books}" class="prod product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+
+									<a class="product_img" th:href="@{/shop/product/__${book.id}__}">
+
+												<img class="aspect-ratio-box__img img-fluid" th:src="@{/cover_images/__${book.coverImage}__}" alt="product image" />
+
+									</a>
+
+									<!-- Add to cart button -->
+									<div class="product__hover__info">
+
+										<a href="cart.html" class="btn btn-dark block"  th:text="'Add to Cart'"></a>
+
 									</div>
+
+										<p class="title-container">
+											<a th:href="@{/shop/product/__${book.id}__}" th:text="${book.title}"></a>
+										</p>
+
+										<h4 th:text="${book.salePrice + 'VND'}"></h4>
+
+
 								</div>
+								<!-- End Single Product -->
 							</div>
 						</div>
-						<div class="tab__container">
-							<div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
-								<div class="row">
-									<!-- Start Single Product -->
-									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-										<div class="product__thumb">
-											<a class="first__img" href="product_details.html"><img
-													src="images/prod2.jpg" alt="product image" /></a>
-										</div>
-										<div class="product__content content--center">
-											<h4>
-												<a href="product_details.html">robin parrish</a>
-											</h4>
-											<ul class="prize d-flex">
-												<li>$35.00</li>
-												<li class="old_prize">$35.00</li>
-											</ul>
-											<div class="action">
-												<div class="actions_inner">
-													<ul class="add_to_links">
-														<li>
-															<a class="cart" href="cart.html"><i
-																	class="bi bi-shopping-bag4"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- End Single Product -->
-									<!-- Start Single Product -->
-									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-										<div class="product__thumb">
-											<a class="first__img" href="product_details.html"><img
-													src="images/books/3.jpg" alt="product image" /></a>
-										</div>
-										<div class="product__content content--center">
-											<h4><a href="product_details.html">The Remainng</a></h4>
-											<ul class="prize d-flex">
-												<li>$35.00</li>
-												<li class="old_prize">$35.00</li>
-											</ul>
-											<div class="action">
-												<div class="actions_inner">
-													<ul class="add_to_links">
-														<li>
-															<a class="cart" href="cart.html"><i
-																	class="bi bi-shopping-bag4"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- End Single Product -->
-								</div>
-								<ul class="wn__pagination">
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li>
-										<a href="#"><i class="zmdi zmdi-chevron-right"></i></a>
-									</li>
-								</ul>
-							</div>
-							<div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">
-								<div class="list__view__wrapper">
-									<!-- Start Single Product -->
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>

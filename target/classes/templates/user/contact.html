@@ -60,9 +60,7 @@
 </head>
 
 <body>
-	<!--[if lte IE 9]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-	<![endif]-->
+
 
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
@@ -78,87 +76,32 @@
 		<!-- End Bradcaump area -->
 		<!-- Start Contact Area -->
 		<section class="wn_contact_area bg--white pt--80 pb--80">
-			<div class="google__map pb--80">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div id="googleMap"></div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 col-12">
 						<div class="contact-form-wrap">
 							<h2 class="contact__title">Get in touch</h2>
-							<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod
-								mazim placerat facer possim assum. </p>
-							<form id="contact-form" action="mail.php" method="post">
+
+							<!-- ... -->
+							<form id="contact-form"  th:action="@{/contact/submit}" method="post" th:object="${contact}">
 								<div class="single-contact-form space-between">
-									<input type="text" name="firstname" placeholder="First Name*">
-									<input type="text" name="lastname" placeholder="Last Name*">
+									<input type="text" name="name" placeholder="Full Name" th:field="*{name}" />
 								</div>
 								<div class="single-contact-form space-between">
-									<input type="email" name="email" placeholder="Email*">
-									<input type="text" name="website" placeholder="Website*">
+									<input type="email" name="email" placeholder="Email" th:field="*{email}" />
 								</div>
 								<div class="single-contact-form">
-									<input type="text" name="subject" placeholder="Subject*">
+									<input type="text" name="subject" placeholder="Subject" th:field="*{subject}" />
 								</div>
 								<div class="single-contact-form message">
-									<textarea name="message" placeholder="Type your message here.."></textarea>
+									<textarea name="message" placeholder="Type your message here.." th:field="*{message}"></textarea>
 								</div>
 								<div class="contact-btn">
 									<button type="submit">Send Email</button>
 								</div>
 							</form>
-						</div>
-						<div class="form-output">
-							<p class="form-messege">
-						</div>
-					</div>
-					<div class="col-lg-4 col-12 md-mt-40 sm-mt-40">
-						<div class="wn__address">
-							<h2 class="contact__title">Get office info.</h2>
-							<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-								Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-								litterarum formas humanitatis per seacula quarta decima et quinta decima. </p>
-							<div class="wn__addres__wreapper">
+							<!-- ... -->
 
-								<div class="single__address">
-									<i class="icon-location-pin icons"></i>
-									<div class="content">
-										<span>address:</span>
-										<p>666 5th Ave New York, NY, United</p>
-									</div>
-								</div>
-
-								<div class="single__address">
-									<i class="icon-phone icons"></i>
-									<div class="content">
-										<span>Phone Number:</span>
-										<p>716-298-1822</p>
-									</div>
-								</div>
-
-								<div class="single__address">
-									<i class="icon-envelope icons"></i>
-									<div class="content">
-										<span>Email address:</span>
-										<p>716-298-1822</p>
-									</div>
-								</div>
-
-								<div class="single__address">
-									<i class="icon-globe icons"></i>
-									<div class="content">
-										<span>website address:</span>
-										<p>716-298-1822</p>
-									</div>
-								</div>
-
-							</div>
 						</div>
 					</div>
 				</div>
@@ -169,145 +112,19 @@
 		<footer th:replace="user/fragments/footer :: footer"></footer>
 		<!-- //Footer Area -->
 
+
 	</div>
 	<!-- //Main wrapper -->
 	<!-- JS Files -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 	<script th:src="@{/js/user/vendor/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/user/popper.min.js}"></script>
 	<script th:src="@{/js/user/bootstrap.min.js}"></script>
 	<script th:src="@{/js/user/plugins.js}"></script>
 	<script th:src="@{/js/user/active.js}"></script>
 	<!-- Google Map js -->
-	<script th:src="@{/js/user/googlemap.js}"></script>
-	<script>
-		// When the window has finished loading create our google map below
-		google.maps.event.addDomListener(window, 'load', init);
-
-		function init() {
-			// Basic options for a simple Google Map
-			// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-			var mapOptions = {
-				// How zoomed in you want the map to start at (always required)
-				zoom: 12,
-
-				scrollwheel: false,
-
-				// The latitude and longitude to center the map (always required)
-				center: new google.maps.LatLng(23.7286, 90.3854), // New York
-
-				// How you would like to style the map. 
-				// This is where you would paste any style found on Snazzy Maps.
-				styles:
-					[
-
-						{
-							"featureType": "administrative",
-							"elementType": "labels.text.fill",
-							"stylers": [
-								{
-									"color": "#444444"
-								}
-							]
-						},
-						{
-							"featureType": "landscape",
-							"elementType": "all",
-							"stylers": [
-								{
-									"color": "#f2f2f2"
-								}
-							]
-						},
-						{
-							"featureType": "poi",
-							"elementType": "all",
-							"stylers": [
-								{
-									"visibility": "off"
-								}
-							]
-						},
-						{
-							"featureType": "road",
-							"elementType": "all",
-							"stylers": [
-								{
-									"saturation": -100
-								},
-								{
-									"lightness": 45
-								}
-							]
-						},
-						{
-							"featureType": "road.highway",
-							"elementType": "all",
-							"stylers": [
-								{
-									"visibility": "simplified"
-								}
-							]
-						},
-						{
-							"featureType": "road.arterial",
-							"elementType": "labels.icon",
-							"stylers": [
-								{
-									"visibility": "off"
-								}
-							]
-						},
-						{
-							"featureType": "transit",
-							"elementType": "all",
-							"stylers": [
-								{
-									"visibility": "off"
-								}
-							]
-						},
-						{
-							"featureType": "transit.station.bus",
-							"elementType": "labels.icon",
-							"stylers": [
-								{
-									"saturation": "-16"
-								}
-							]
-						},
-						{
-							"featureType": "water",
-							"elementType": "all",
-							"stylers": [
-								{
-									"color": "#04b7ff"
-								},
-								{
-									"visibility": "on"
-								}
-							]
-						}
-					]
-			};
-
-			// Get the HTML DOM element that will contain your map 
-			// We are using a div with id="map" seen below in the <body>
-			var mapElement = document.getElementById('googleMap');
-
-			// Create the Google Map using our element and options defined above
-			var map = new google.maps.Map(mapElement, mapOptions);
-
-			// Let's also add a marker while we're at it
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(23.7286, 90.3854),
-				map: map,
-				title: 'Dcare!',
-				icon: 'images/icons/map.png',
-				animation: google.maps.Animation.BOUNCE
-
-			});
-		}
-	</script>
 
 	<script th:src="@{/js/user/active.js}"></script>
 

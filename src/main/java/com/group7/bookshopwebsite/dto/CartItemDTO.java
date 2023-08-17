@@ -14,4 +14,8 @@ public class CartItemDTO {
     private String title;
     private Double price;
     private Integer quantity;
+
+    public double getSubtotal() {
+        return price * quantity;
+    }
 }

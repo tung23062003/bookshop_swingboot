@@ -184,13 +184,13 @@
 										<span class="truncate-text mr-2" th:text="${cartItem.title}"></span>
 										× <span th:text="${cartItem.quantity}" class="ml-1"></span>
 									</div>
-									<span th:text="'$' + ${(cartItem.price * cartItem.quantity)}" class="text-right"></span>
+									<span th:text="${(cartItem.price * cartItem.quantity)}" class="text-right"></span>
 								</li>
 							</ul>
 							<ul class="total__amount">
 								<li class="d-flex justify-content-between">
 									<span>Order Total</span>
-									<span th:text="'$' + ${(totalCart)}" class="text-right"></span>
+									<span th:text=" ${(totalCart)}" class="text-right"></span>
 								</li>
 							</ul>
 						</div>

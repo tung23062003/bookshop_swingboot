@@ -181,12 +181,17 @@
 					contentType: "application/json",
 					data: data,
 					success: function (data) {
-						alert("Item added to cart successfully.");
-						// Update cart quantity in the header
-						updateCartQuantity();
+						if (data === "ok") {
+							alert("Thêm sản phẩm vào giỏ thành công");
+							// Update cart quantity in the header
+							updateCartQuantity();
+						} else {
+							alert("Bạn cần đăng nhập trước");
+							window.location.href = "/login"; // Update the URL accordingly
+						}
 					},
 					error: function () {
-						alert("Error adding item to cart.");
+						alert("Đã xảy ra lỗi");
 					}
 				});
 			}

@@ -3,6 +3,8 @@ package com.group7.bookshopwebsite.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -22,12 +24,14 @@ public class Category implements Serializable {
     @Lob
     private String description;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "updated_at")
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     // Getters and setters, validation annotations, and other fields as needed

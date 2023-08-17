@@ -3,6 +3,8 @@ package com.group7.bookshopwebsite.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -51,13 +53,16 @@ public class Book implements Serializable {
     @Column(name = "buy_count")
     private Integer buyCount;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "updated_at")
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
     private Date updatedAt;
+
 
     @ManyToMany(mappedBy = "favoriteBooks")
     private Set<User> usersWhoFavorited;
@@ -75,5 +80,14 @@ public class Book implements Serializable {
         if (this.usersWhoFavorited != null) {
             this.usersWhoFavorited.remove(user);
         }
+    }
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderDetail> orderDetails = new HashSet<>();
+
+
+    public void addOrderDetail(OrderDetail orderDetail) {
+        orderDetail.setBook(this);
+        orderDetails.add(orderDetail);
     }
 }

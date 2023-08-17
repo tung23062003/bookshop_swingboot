@@ -171,25 +171,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="order-id">#12345</td>
-												<td class="order-date">2023-07-25</td>
-												<td class="order-amount">$165.00</td>
-												<td class="order-status delivering">Delivering</td>
-												<td class="order-details">
-													<a href="#">View Details</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="order-id">#67890</td>
-												<td class="order-date">2023-07-24</td>
-												<td class="order-amount">$50.00</td>
-												<td class="order-status completed">Completed</td>
-												<td class="order-details">
-													<a href="#">View Details</a>
-												</td>
-											</tr>
-											<!-- Add more order rows here as needed -->
+										<tr th:each="order : ${orders}">
+											<td class="order-id" th:text="'#' + ${order.id}"></td>
+											<td class="order-date" th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+
+											<td class="order-amount" th:text="${order.totalPrice}"></td>
+											<td class="order-status delivering" th:text="${order.status}"></td>
+											<td class="order-details">
+												<a th:href="@{orders/__${order.id}__}">View Details</a>
+											</td>
+										</tr>
 										</tbody>
 									</table>
 								</div>

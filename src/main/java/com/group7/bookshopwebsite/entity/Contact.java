@@ -3,6 +3,7 @@ package com.group7.bookshopwebsite.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,8 +24,9 @@ public class Contact implements Serializable {
     @Lob
     private String message;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
     // Getters and setters, validation annotations, and other fields as needed

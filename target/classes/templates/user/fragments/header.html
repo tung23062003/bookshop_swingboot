@@ -95,7 +95,14 @@
 										<div class="switcher-options">
 											<div class="switcher-currency-trigger">
 												<div th:if="${currentUser != null}" class="setting__menu">
+
+													<span th:each="role : ${currentUser.roles}">
+   														 <span th:if="${role.name == 'ROLE_ADMIN'}">
+															 <span><a th:href="@{/admin}" class="font-weight-bold text-primary">ADMIN</a></span>
+														 </span>
+													</span>
 													<span><a th:href="@{/cart/checkout}">Checkout</a></span>
+													<span><a th:href="@{/orders}">Orders</a></span>
 													<span><a th:href="@{/wishlist}">Wishlist</a></span>
 													<span><a th:href="@{/logout}">Log out</a></span>
 												</div>

@@ -3,9 +3,12 @@ package com.group7.bookshopwebsite.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -30,8 +33,9 @@ public class Order implements Serializable {
     @Column(name = "email_address")
     private String emailAddress;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "total_price")
@@ -45,5 +49,19 @@ public class Order implements Serializable {
     @Column(name = "shipping_address")
     private String shippingAddress;
 
-    // Getters and setters, validation annotations, and other fields as needed
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderDetail> orderDetails = new HashSet<>();
+
+
+    public void addOrderDetail(OrderDetail orderDetail) {
+        orderDetail.setOrder(this);
+        orderDetails.add(orderDetail);
+    }
+
+    public void removeOrderDetail(OrderDetail orderDetail) {
+        orderDetails.remove(orderDetail);
+        orderDetail.setOrder(null);
+    }
 }
+
+

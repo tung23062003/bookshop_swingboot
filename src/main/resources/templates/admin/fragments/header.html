@@ -21,7 +21,7 @@
     <div th:fragment="header_nav">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Book Store</a>
+            <a class="navbar-brand ps-3" th:href="@{/home}">Book Store</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
                     id="sidebarToggle" href="#!">
@@ -43,7 +43,7 @@
                         <li>
                             <hr class="dropdown-divider"/>
                         </li>
-                        <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>

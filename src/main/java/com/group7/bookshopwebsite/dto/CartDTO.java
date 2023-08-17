@@ -18,4 +18,12 @@ public class CartDTO {
     public void setCartItems(List<CartItemDTO> cartItems) {
         this.cartItems = cartItems;
     }
+
+    public double calculateTotalAmount() {
+        double totalAmount = 0.0;
+        for (CartItemDTO cartItem : cartItems) {
+            totalAmount += cartItem.getSubtotal();
+        }
+        return totalAmount;
+    }
 }

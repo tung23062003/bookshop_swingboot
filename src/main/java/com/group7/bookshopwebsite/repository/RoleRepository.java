@@ -4,5 +4,5 @@ import com.group7.bookshopwebsite.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    // Custom query methods if needed
+    Role findByName(String name);
 }

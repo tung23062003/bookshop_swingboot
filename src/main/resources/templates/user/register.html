@@ -70,35 +70,49 @@
 					<div class="col-lg-6 col-12">
 						<div class="my__account__wrapper">
 							<h3 class="account__title">Register</h3>
-							<form action="#">
+							<form th:action="@{/register}" method="post" th:object="${user}" onsubmit="return validateForm()">
+
+								<div th:if="${success}">
+									<div class="alert alert-success" role="alert">
+										Đăng ký thành công !
+									</div>
+								</div>
+								<div th:if="${error}">
+									<div class="alert alert-danger" role="alert">
+										Có vẻ như email này đã được dùng trước đó, vui lòng thử lại
+									</div>
+								</div>
 								<div class="account__form">
 									<div class="input__box">
 										<label>Email address <span>*</span></label>
-										<input type="email" />
+										<input type="email" th:field="*{email}" />
 									</div>
 									<div class="input__box">
 										<label>Fullname<span>*</span></label>
-										<input type="text" />
+										<input type="text" th:field="*{fullName}" />
 									</div>
 									<div class="input__box">
 										<label>Address<span>*</span></label>
-										<input type="text" />
+										<input type="text" th:field="*{address}" />
 									</div>
 									<div class="input__box">
 										<label>Phone number<span>*</span></label>
-										<input type="tel" />
+										<input type="tel" th:field="*{phoneNumber}" />
 									</div>
 									<div class="input__box">
 										<label>Password<span>*</span></label>
-										<input type="password" />
+										<input id="password" type="password" th:field="*{password}" />
 									</div>
 									<div class="input__box">
 										<label>Confirm Password<span>*</span></label>
-										<input type="password" />
+										<input type="password" id="confirmPassword" name="confirmPassword" />
 									</div>
+
+
 									<div class="form__btn">
-										<button>Register</button>
+										<button type="submit">Register</button>
 									</div>
+
 								</div>
 							</form>
 						</div>
@@ -110,6 +124,38 @@
 		<!-- Footer Area -->
 		<footer th:replace="user/fragments/footer :: footer"></footer>
 		<!-- //Footer Area -->
+		<script>
+			function validateForm() {
+				var email = document.getElementById("email").value;
+				var fullName = document.getElementById("fullName").value;
+				var address = document.getElementById("address").value;
+				var phoneNumber = document.getElementById("phoneNumber").value;
+				var password = document.getElementById("password").value;
+				var confirmPassword = document.getElementById("confirmPassword").value;
+
+				if (email === "" || fullName === "" || address === "" || phoneNumber === "" || password === "" || confirmPassword === "") {
+					alert("Vui lòng điền đủ thông tin");
+					return false;
+				}
+
+				if (password !== confirmPassword) {
+					alert("Mật khẩu không trùng nhau!");
+					return false;
+				}
+
+				// Validate phone number format
+				var phoneRegex = /^[0-9]{10}$/;
+				if (!phoneRegex.test(phoneNumber)) {
+					alert("Số điện thoại không hợp lệ");
+					return false;
+				}
+
+
+				return true; // Submit the form if all validations pass
+			}
+
+		</script>
+
 	</div>
 	<!-- //Main wrapper -->
 	<!-- JS Files -->

@@ -143,32 +143,33 @@
 					<div class="col-lg-6 col-12">
 						<div class="customer_details">
 							<h3 class="mb-4">Billing details</h3>
-							<form action="#">
+							<form th:action="@{/cart/place-order}" th:object="${orderPerson}" method="post">
 								<div class="customar__field">
 									<div class="input_box w--75">
 										<label>Full name <span>*</span></label>
-										<input type="text" />
+										<input type="text" th:field="*{fullName}" />
 									</div>
 
 									<div class="input_box w--75">
 										<label>Phone <span>*</span></label>
-										<input type="text" />
+										<input type="text" th:field="*{phoneNumber}" />
 									</div>
 
 									<div class="input_box w--75">
 										<label>Email address <span>*</span></label>
-										<input type="email" />
+										<input type="email" th:field="*{email}" />
 									</div>
 									<div class="input_box w--75">
 										<label>Delivery address <span>*</span></label>
-										<textarea name="" id="" cols="70" rows="5"></textarea>
+										<textarea th:field="*{address}" cols="70" rows="5"></textarea>
 									</div>
 								</div>
-								<button type="submit" class="btn-success submit">
+								<button type="submit" class="btn-success submit" th:if="${totalCart > 0}">
 									order
 								</button>
 							</form>
 						</div>
+
 					</div>
 					<div class="col-lg-6 col-md-12 col-sm-12">
 						<div class="wn__order__box">

@@ -106,9 +106,10 @@
 											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
 												title="Qty" type="number" />
 											<div class="addtocart__actions">
-												<a class="btn btn-danger text-light py-2 px-4" title="Add to Cart">
+												<button class="btn btn-danger text-light py-2 px-4"
+														th:onclick="'addToCart(' + ${product.id} + ')'">
 													Add to Cart
-												</a>
+												</button>
 											</div>
 										</div>
 										<div class="box-tocart d-flex">
@@ -168,6 +169,42 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			function addToCart(productId) {
+				var qty = $('#qty').val(); // Lấy giá trị từ trường input
+				var data = JSON.stringify({ "productId": productId, "quantity": qty });
+
+				console.log(productId)
+				$.ajax({
+					type: "POST",
+					url: "/cart/add-to-cart",
+					contentType: "application/json",
+					data: data,
+					success: function (data) {
+						alert("Item added to cart successfully.");
+						// Update cart quantity in the header
+						updateCartQuantity();
+					},
+					error: function () {
+						alert("Error adding item to cart.");
+					}
+				});
+			}
+
+			function updateCartQuantity() {
+				$.ajax({
+					type: "GET",
+					url: "/cart/cart-item-count",  // Replace with the actual endpoint to get cart item count
+					success: function (data) {
+						$("#cart-quantity").text(data); // Update the cart quantity in the header
+					},
+					error: function () {
+						console.log("Error updating cart quantity.");
+					}
+				});
+			}
+
+		</script>
 		<!-- End main Content -->
 		<!-- Start Search Popup -->
 		<div th:replace="user/fragments/search_popup :: search_popup"></div>

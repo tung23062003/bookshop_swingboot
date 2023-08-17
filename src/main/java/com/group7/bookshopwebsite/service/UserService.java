@@ -8,9 +8,10 @@ import java.util.Set;
 
 public interface UserService {
     Set<Book> getFavoriteBooks(Long userId);
-    User createUser(User user);
     User getUserById(Long userId);
     List<User> getAllUsers();
     void updateUser(User user);
     void deleteUser(Long userId);
+
+    boolean registerUser(User user);
 }

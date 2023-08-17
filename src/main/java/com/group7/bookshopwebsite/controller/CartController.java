@@ -4,6 +4,7 @@ import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.dto.AddToCartRequest;
 import com.group7.bookshopwebsite.dto.CartDTO;
 import com.group7.bookshopwebsite.dto.CartItemDTO;
+import com.group7.bookshopwebsite.dto.OrderPerson;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.service.BookService;
 import com.group7.bookshopwebsite.service.CartService;
@@ -82,11 +83,23 @@ public class CartController extends BaseController {
         CartDTO cart = cartService.getCart(session);
         model.addAttribute("cart", cart);
         double totalCart = 0;
-        for (CartItemDTO item : cart.getCartItems()
-        ) {
+        for (CartItemDTO item : cart.getCartItems()) {
             totalCart += item.getPrice() * item.getQuantity();
         }
         model.addAttribute("totalCart", totalCart);
+
+        // Khởi tạo một đối tượng OrderPerson và đưa vào model để liên kết với form
+        OrderPerson orderPerson = new OrderPerson();
+        model.addAttribute("orderPerson", orderPerson);
+
         return "user/checkout";
     }
+
+    @PostMapping("/place-order")
+    public String placeOrder(@ModelAttribute("orderPerson") OrderPerson orderPerson){
+
+        System.out.println(orderPerson);
+        return "redirect:/orders";
+    }
+
 }

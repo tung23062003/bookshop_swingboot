@@ -5,6 +5,6 @@ public interface OrderStatus {
     String PROCESSING = "PROCESSING";     // Đang xử lý
     String DELIVERING = "DELIVERING";        // Đang giao hàng
     String DELIVERED = "DELIVERED";      // Đã giao thành công
-    String CANCELED = "CANCELED";       // Đã hủy
+    String CANCELLED = "CANCELLED";       // Đã hủy
 }
 

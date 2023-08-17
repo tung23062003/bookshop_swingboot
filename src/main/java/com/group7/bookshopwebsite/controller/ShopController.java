@@ -34,7 +34,9 @@ public class ShopController extends BaseController {
         model.addAttribute("categories", categories);
 
         Pageable pageable = PageRequest.of(page, 6);
+
         Page<Book> searchResult;
+
         if (searchModel.isEmpty()) {
             searchResult = bookService.getAllBooksForUsers(pageable);
         } else {

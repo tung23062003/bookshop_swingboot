@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.service.impl;
 
+import com.group7.bookshopwebsite.constant.SortType;
 import com.group7.bookshopwebsite.dto.BookSearchDTO;
 import com.group7.bookshopwebsite.dto.UserSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
@@ -111,10 +112,42 @@ public class BookServiceImpl implements BookService {
     public Page<Book> searchBooksUser(UserSearchDTO search, Pageable pageable) {
         Long categoryId = search.getCategoryId();
         String keyword = search.getKeyword();
+        if (keyword == null) keyword = "";
         String sortBy = search.getSortBy();
 
-return bookRepository.findByTitleContaining(keyword,pageable);
+        Page<Book> booksPage = bookRepository.findAll(pageable);
+        if (categoryId != null) {
+            if (sortBy.equals(SortType.oldest)) {
+                booksPage = bookRepository.findByCategoryIdAndTitleContainingOrderByCreatedAtAsc(categoryId, keyword, pageable);
+            } else if (sortBy.equals(SortType.newest)) {
+                booksPage = bookRepository.findByCategoryIdAndTitleContainingOrderByCreatedAtDesc(categoryId, keyword, pageable);
+
+            } else if (sortBy.equals(SortType.priceLowToHigh)) {
+                booksPage = bookRepository.findByCategoryIdAndTitleContainingOrderBySalePriceAsc(categoryId, keyword, pageable);
+
+            } else {
+                booksPage = bookRepository.findByCategoryIdAndTitleContainingOrderBySalePriceDesc(categoryId, keyword, pageable);
+            }
+        } else {
+            if (sortBy.equals(SortType.oldest)) {
+                booksPage = bookRepository.findByTitleContainingOrderByCreatedAtAsc(keyword, pageable);
+            } else if (sortBy.equals(SortType.newest)) {
+                booksPage = bookRepository.findByTitleContainingOrderByCreatedAtDesc(keyword, pageable);
+
+            } else if (sortBy.equals(SortType.priceLowToHigh)) {
+                booksPage = bookRepository.findByTitleContainingOrderBySalePriceAsc(keyword, pageable);
+
+            } else {
+                booksPage = bookRepository.findByTitleContainingOrderBySalePriceDesc(keyword, pageable);
+            }
+        }
+        if(sortBy == null){
+            booksPage = bookRepository.findByCategoryIdAndTitleContainingOrderByCreatedAtDesc(categoryId,keyword,pageable);
+        }
+        return booksPage;
     }
+
+
 
     @Override
     public Page<Book> getAllBooksForUsers(Pageable pageable) {

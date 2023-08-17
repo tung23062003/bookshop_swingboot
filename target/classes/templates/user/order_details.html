@@ -155,6 +155,7 @@
 								<p class="mb-4"><strong>Order Date:</strong> <span th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
 								<p class="mb-4"><strong>Order Amount:</strong> <span th:text="${order.totalPrice}"></span></p>
 								<p class="mb-4"><strong>Order Status:</strong> <span th:text="${order.status}"></span></p>
+								<p class="mb-4"><strong>Phone number:</strong> <span th:text="${order.phoneNumber}"></span></p>
 								<a th:if="${order.getStatus() == 'PENDING' || order.getStatus() == 'PROCESSING'}" th:href="@{/orders/cancel/__${order.id}__}" class="btn btn-danger cancel-order-btn mb-4">Cancel Order</a>
 							</div>
 							<div class="order-details-table wnro__table table-responsive">

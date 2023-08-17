@@ -19,7 +19,6 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
-
     @Override
     public Page<Category> getAllCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable);
@@ -49,7 +48,6 @@ public class CategoryServiceImpl implements CategoryService {
             categoryRepository.save(existingCategory);
         }
     }
-
     @Override
     public void deleteCategory(Long categoryId) {
         Category category = getCategoryById(categoryId);

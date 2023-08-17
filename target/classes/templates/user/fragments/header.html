@@ -74,7 +74,7 @@
 				<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 					<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 
-						<li class="wishlist"><a th:href="@{/wishlist}"></a></li>
+
 						<li class="shopcart">
 							<a th:href="@{/cart}"><span class="product_qun" th:text="${cartItemCount}" id="cart-quantity"></span></a>
 						</li>
@@ -85,16 +85,26 @@
 								<div class="content-inner">
 									<div class="switcher-currency">
 										<strong class="label switcher-label">
-											<span>My Account</span>
+											<span th:if="${currentUser != null}" th:text="${currentUser.fullName}">
+
+											</span>
+											<span th:if="${currentUser == null}" th:text="Account">
+
+											</span>
 										</strong>
 										<div class="switcher-options">
 											<div class="switcher-currency-trigger">
-												<div class="setting__menu">
-													<span><a href="#">My Account</a></span>
+												<div th:if="${currentUser != null}" class="setting__menu">
 													<span><a th:href="@{/cart/checkout}">Checkout</a></span>
-													<span><a th:href="@{/login}">Sign In</a></span>
+													<span><a th:href="@{/wishlist}">Wishlist</a></span>
+													<span><a th:href="@{/logout}">Log out</a></span>
+												</div>
+
+												<div th:if="${currentUser == null}" class="setting__menu">
+													<span><a th:href="@{/login}">Sign in</a></span>
 													<span><a th:href="@{/register}">Create An Account</a></span>
 												</div>
+
 											</div>
 										</div>
 									</div>

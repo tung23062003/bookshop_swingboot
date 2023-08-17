@@ -3,12 +3,16 @@ package com.group7.bookshopwebsite.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -18,28 +22,51 @@ public class SecurityConfig {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .anyRequest().permitAll()
-                )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginPage("/login")
-                                .permitAll().failureUrl("/login?error=true")
-                )
-                .logout()
-                .logoutUrl("/logout") // URL để thực hiện logout
-                .logoutSuccessUrl("/home") // URL chuyển hướng sau khi logout thành công
-                .invalidateHttpSession(true) // Xóa session sau khi logout
-                .deleteCookies("JSESSIONID");
+    public static PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeHttpRequests(authorize ->
+                        authorize.requestMatchers("/debug").permitAll()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/cart/**").authenticated()
+                                .anyRequest().permitAll()
+                ).formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/home")
+                                .permitAll()
+                ).logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .permitAll()
+                                .logoutSuccessUrl("/home")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+
+                )
+                .exceptionHandling(
+                        exceptionHandling -> exceptionHandling
+                                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                    if (request.isUserInRole("USER")) {
+                                        response.sendRedirect("/not_found");
+                                    } else {
+                                        response.sendRedirect("/not_found");
+                                    }
+                                })
+                )
+        ;
         return http.build();
     }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 }

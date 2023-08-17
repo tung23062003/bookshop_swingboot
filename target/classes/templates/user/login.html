@@ -71,20 +71,26 @@
 					<div class="col-lg-6 col-12">
 						<div class="my__account__wrapper">
 							<h3 class="account__title">Login</h3>
-							<form action="#">
+							<div th:if="${param.error}">
+								<div class="alert alert-danger" role="alert">
+									Đăng nhập thất bại
+								</div>
+							</div>
+
+							<form method="post" th:action="@{/login}">
 								<div class="account__form">
 									<div class="input__box">
-										<label>Username or email address <span>*</span></label>
-										<input type="text" />
+										<label for="email">Username or email address <span>*</span></label>
+										<input type="text" id="email" name="username" />
 									</div>
 									<div class="input__box">
-										<label>Password<span>*</span></label>
-										<input type="text" />
+										<label for="password">Password<span>*</span></label>
+										<input type="password" id="password" name="password" />
 									</div>
 									<div class="form__btn">
-										<button>Login</button>
+										<button type="submit">Login</button>
 									</div>
-									<a class="forget_pass" href="#">Lost your password?</a>
+									<a class="forget_pass" th:href="@{/register}">Register</a>
 								</div>
 							</form>
 						</div>

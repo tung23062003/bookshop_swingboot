@@ -228,11 +228,11 @@
 					success: function (data) {
 						if (data === "ok") {
 							alert("Thêm sản phẩm vào giỏ thành công!");
-							// Update cart quantity in the header
+
 							updateCartQuantity();
 						} else {
 							alert("Bạn cần đăng nhập trước");
-							window.location.href = "/login"; // Update the URL accordingly
+							window.location.href = "/login";
 						}
 					},
 					error: function () {

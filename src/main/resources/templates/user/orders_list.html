@@ -142,7 +142,22 @@
 		</div>
 		<!-- End Search Popup -->
 		<!-- Start Bradcaump area -->
-		<div th:replace="user/fragments/bradcaump_area :: bradcaump_area"></div>
+		<div class="ht__bradcaump__area bg-image--5">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title">Orders list</h2>
+							<nav class="bradcaump-content">
+								<a class="breadcrumb_item" th:href="@{/home}">Home</a>
+								<span class="brd-separetor">/</span>
+								<span class="breadcrumb_item active">Orders list</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- End Bradcaump area -->
 		<!-- orders-list-main-area start -->
 		<div class="wishlist-area section-padding--lg bg__white">
@@ -171,16 +186,18 @@
 											</tr>
 										</thead>
 										<tbody>
-										<tr th:each="order : ${orders}">
-											<td class="order-id" th:text="'#' + ${order.id}"></td>
-											<td class="order-date" th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+											<tr th:each="order : ${orders}">
+												<td class="order-id" th:text="'#' + ${order.id}"></td>
+												<td class="order-date"
+													th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}">
+												</td>
 
-											<td class="order-amount" th:text="${order.totalPrice}"></td>
-											<td class="order-status delivering" th:text="${order.status}"></td>
-											<td class="order-details">
-												<a th:href="@{orders/__${order.id}__}">View Details</a>
-											</td>
-										</tr>
+												<td class="order-amount" th:text="${order.totalPrice}"></td>
+												<td class="order-status delivering" th:text="${order.status}"></td>
+												<td class="order-details">
+													<a th:href="@{orders/__${order.id}__}">View Details</a>
+												</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

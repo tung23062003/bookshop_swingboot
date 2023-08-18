@@ -59,11 +59,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByTitle(name);
     }
 
-    @Override
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
-    }
-
     private void saveCoverImage(Book book, MultipartFile coverImage) {
         if (coverImage == null || coverImage.isEmpty()) {
             return;
@@ -148,10 +143,19 @@ public class BookServiceImpl implements BookService {
     }
 
 
-
     @Override
     public Page<Book> getAllBooksForUsers(Pageable pageable) {
         return bookRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Book> getTop4BestSeller() {
+        return bookRepository.findTop4ByOrderByBuyCountAsc();
+    }
+
+    @Override
+    public List<Book> findAllOrderByCreatedDate() {
+        return bookRepository.findByOrderByCreatedAtDesc();
     }
 
 

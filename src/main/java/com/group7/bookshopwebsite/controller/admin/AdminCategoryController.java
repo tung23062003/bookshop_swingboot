@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.controller.admin;
 
+import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.entity.Category;
 import com.group7.bookshopwebsite.service.CategoryService;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/admin/categories_management")
-public class AdminCategoryController {
+public class AdminCategoryController extends BaseController {
     private final CategoryService categoryService;
 
     @GetMapping()

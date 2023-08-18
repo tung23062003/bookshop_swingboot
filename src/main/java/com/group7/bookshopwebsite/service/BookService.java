@@ -1,6 +1,5 @@
 package com.group7.bookshopwebsite.service;
 
-
 import com.group7.bookshopwebsite.dto.BookSearchDTO;
 import com.group7.bookshopwebsite.dto.UserSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
@@ -20,10 +19,12 @@ public interface BookService {
 
     Book getBookById(Long id);
     Book getBookByName(String name);
-    List<Book> getAllBooks();
 
     Page<Book> searchBooks(BookSearchDTO search, Pageable pageable);
     Page<Book> searchBooksUser(UserSearchDTO search, Pageable pageable);
 
     Page<Book> getAllBooksForUsers(Pageable pageable);
+
+    List<Book> getTop4BestSeller();
+    List<Book> findAllOrderByCreatedDate();
 }

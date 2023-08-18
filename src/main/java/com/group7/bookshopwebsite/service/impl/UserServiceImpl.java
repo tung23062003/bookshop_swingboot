@@ -7,6 +7,8 @@ import com.group7.bookshopwebsite.repository.RoleRepository;
 import com.group7.bookshopwebsite.repository.UserRepository;
 import com.group7.bookshopwebsite.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+
+    @Override
+    public Page<User> getAllUserOrderByCreatedDate(Pageable pageable) {
+        return userRepository.findAllByOrderByCreatedAtDesc(pageable);
+    }
+
     @Override
     public Set<Book> getFavoriteBooks(Long userId) {
         User user = userRepository.findById(userId).orElse(null);
@@ -68,6 +76,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
         return true;
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
 
 }

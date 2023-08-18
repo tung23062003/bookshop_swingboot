@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.controller.admin;
 
+import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.dto.BookSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.Category;
@@ -24,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/admin/books_management")
-public class AdminBookController {
+public class AdminBookController extends BaseController {
 
     private final BookService bookService;
     private final CategoryService categoryService;

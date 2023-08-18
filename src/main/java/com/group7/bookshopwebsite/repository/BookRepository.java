@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
@@ -32,4 +33,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByTitleContainingOrderBySalePriceAsc(String title, Pageable pageable);
     Page<Book> findByTitleContainingOrderBySalePriceDesc(String title, Pageable pageable);
 
+
+    List<Book> findTop4ByOrderByBuyCountAsc();
+    List<Book> findByOrderByCreatedAtDesc();
 }

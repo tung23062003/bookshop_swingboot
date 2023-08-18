@@ -24,6 +24,25 @@
 
 					<div class="container mt-5">
 						<h1>Quản lý liên hệ</h1>
+						<!-- Dropdown filter -->
+						<form id="yourFormId" method="get" th:action="@{/admin/contacts}">
+
+							<div class="mb-3">
+								<label for="sortFilter">Sort By:</label>
+								<select th:value="${sortBy}" name="sort_by" class="w-25 form-select" id="sortFilter" onchange="submitSort();">
+									<option th:value="oldest" th:selected="${sortBy == 'oldest'}">Cũ nhất</option>
+									<option th:value="newest" th:selected="${sortBy == 'newest'}">Mới nhất</option>
+
+
+								</select>
+							</div>
+						</form>
+
+						<script>
+							function submitSort() {
+								document.getElementById("yourFormId").submit();
+							}
+						</script>
 
 						<!-- Biểu mẫu thêm/sửa liên hệ -->
 						<div id="contactForm" style="display:none;">
@@ -64,112 +83,36 @@
 								</tr>
 							</thead>
 							<tbody id="contactList">
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
+
+								<tr th:each="contact : ${contacts}">
+									<td th:text="${contact.id}"></td>
+									<td th:text="${contact.name}"></td>
+									<td th:text="${contact.email}"></td>
+									<td th:text="${contact.subject}"></td>
+									<td th:text="${contact.message}"></td>
+									<td th:text="${#dates.format(contact.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+
 									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
+										<a th:href="@{/admin/contacts/response/__${contact.id}__}" type="button"
 											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
+										<button class="btn btn-danger btn-sm" onclick="">Xóa</button>
 									</td>
 								</tr>
 
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{'/admin/contacts-response'}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>1</td>
-									<td>Name 1</td>
-									<td>Email 1</td>
-									<td>Subject 1</td>
-									<td>Message 1</td>
-									<td>Create At 1</td>
-									<td>
-										<a th:href="@{/admin/contacts-response}" type="button"
-											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="deleteContact('1')">Xóa</button>
-									</td>
-								</tr>
-
-
-								<!-- Các hàng khác tương tự -->
 							</tbody>
 						</table>
-						<div class="pagination justify-content-center" id="pagination"></div>
+
 					</div>
 				</div>
 			</main>
+
+			<div th:if="${totalPages > 1}" class="d-flex justify-content-center">
+				<ul class="pagination">
+					<li th:each="pageNumber : ${#numbers.sequence(1,totalPages)}" th:class="${pageNumber == currentPage + 1 ? 'page-item active' : 'page-item'}">
+						<a th:href="@{/admin/contacts(page=${pageNumber},sort_by=${sortBy})}" class="page-link" th:text="${pageNumber}"></a>
+					</li>
+				</ul>
+			</div>
 			<div th:replace="/admin/fragments/footer :: footer"></div>
 		</div>
 	</div>

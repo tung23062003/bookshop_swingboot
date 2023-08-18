@@ -67,6 +67,7 @@
 		.mainmenu__nav .meninmenu li a {
 			color: white;
 		}
+
 	</style>
 
 	<style>
@@ -127,7 +128,7 @@
 
 						<div class="container">
 							<div class="row">
-								<div th:each="book : ${books}" class="mt-4 prod product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+								<div th:each="book : ${books}" class="mt--50 prod product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 
 									<a class="product_img" th:href="@{/shop/product/__${book.id}__}">
 

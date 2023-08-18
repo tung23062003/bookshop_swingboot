@@ -1,5 +1,6 @@
 package com.group7.bookshopwebsite.controller.admin;
 
+import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.entity.Order;
 import com.group7.bookshopwebsite.entity.OrderDetail;
 import com.group7.bookshopwebsite.service.OrderDetailService;
@@ -22,7 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/orders_management")
 @AllArgsConstructor
-public class AdminOrderController {
+public class AdminOrderController extends BaseController {
 
     private final OrderService orderService;
     private OrderDetailService orderDetailService;

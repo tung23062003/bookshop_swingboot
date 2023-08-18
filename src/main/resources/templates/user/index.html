@@ -216,7 +216,48 @@
 
 			</div>
 		</section>
+		<script>
+			function addToCart(productId) {
+				var data = JSON.stringify({ "productId": productId, "quantity": 1 });
 
+				$.ajax({
+					type: "POST",
+					url: "/cart/add-to-cart",
+					contentType: "application/json",
+					data: data,
+					success: function (data) {
+						if (data === "ok") {
+							alert("Thêm sản phẩm vào giỏ thành công!");
+							// Update cart quantity in the header
+							updateCartQuantity();
+						} else {
+							alert("Bạn cần đăng nhập trước");
+							window.location.href = "/login"; // Update the URL accordingly
+						}
+					},
+					error: function () {
+						alert("Error adding item to cart.");
+					}
+				});
+			}
+
+			function updateCartQuantity() {
+				$.ajax({
+					type: "GET",
+					url: "/cart/cart-item-count",  // Replace with the actual endpoint to get cart item count
+					success: function (data) {
+						$("#cart-quantity").text(data); // Update the cart quantity in the header
+					},
+					error: function () {
+						console.log("Error updating cart quantity.");
+					}
+				});
+			}
+
+
+
+
+		</script>
 		<!-- Footer Area -->
 		<footer th:replace="user/fragments/footer :: footer"></footer>
 		<!-- //Footer Area -->

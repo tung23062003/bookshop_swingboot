@@ -27,13 +27,13 @@ public class ShopController extends BaseController {
     @GetMapping
     public String getShopPage(
             @ModelAttribute("searchModel") UserSearchDTO searchModel,
-            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "page", defaultValue = "1") int page,
             Model model) {
 
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
 
-        Pageable pageable = PageRequest.of(page, 6);
+        Pageable pageable = PageRequest.of(page - 1, 6);
 
         Page<Book> searchResult;
 
@@ -44,6 +44,10 @@ public class ShopController extends BaseController {
         }
 
         model.addAttribute("books", searchResult);
+        model.addAttribute("totalPages", searchResult.getTotalPages());
+        model.addAttribute("currentPage", searchResult.getNumber());
+        model.addAttribute("sortBy", searchModel.getSortBy());
+        model.addAttribute("sortBy", searchModel.getCategoryId());
 
         return "user/shop";
     }

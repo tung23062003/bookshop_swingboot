@@ -15,7 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByTitleContaining(String keyword, Pageable pageable);
     Book findByTitle(String title);
 
-
     Page<Book> findByCategory(Optional<Category> category, Pageable pageable);
 
 
@@ -28,13 +27,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Page<Book> findByCategoryId(Long categoryId, Pageable pageable);
 
-    Page<Book> findByCategoryIdAndTitleContaining(Long categoryId, String keyword, Pageable pageable);
-
     Page<Book> findByTitleContainingOrderByCreatedAtAsc(String title, Pageable pageable);
     Page<Book> findByTitleContainingOrderByCreatedAtDesc(String title, Pageable pageable);
     Page<Book> findByTitleContainingOrderBySalePriceAsc(String title, Pageable pageable);
     Page<Book> findByTitleContainingOrderBySalePriceDesc(String title, Pageable pageable);
-
-
 
 }

@@ -14,6 +14,8 @@ import com.group7.bookshopwebsite.repository.OrderRepository;
 
 import com.group7.bookshopwebsite.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -31,6 +33,10 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    @Override
+    public Page<Order> getAllOrdersOnPage(Pageable pageable) {
+        return orderRepository.findAll(pageable);
+    }
     @Override
     public List<Order> getAllOrdersByUser(User user) {
         return orderRepository.findByUserOrderByCreatedAtDesc(user);
@@ -83,8 +89,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void cancelOrder(Order order) {
-        order.setStatus(OrderStatus.CANCELED);
+        order.setStatus(OrderStatus.CANCELLED);
         orderRepository.save(order);
+    }
+
+    @Override
+    public Page<Order> getOrdersByStatus(String status, Pageable pageable) {
+        return orderRepository.findByStatus(status,pageable);
     }
 
 

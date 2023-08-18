@@ -53,7 +53,7 @@
 			gap: 10px;
 		}
 		.product_img{
-			max-height: 300px;
+			height: 300px;
 			overflow: hidden;
 			display: block;
 		}
@@ -127,7 +127,7 @@
 
 						<div class="container">
 							<div class="row">
-								<div th:each="book : ${books}" class="prod product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+								<div th:each="book : ${books}" class="mt-4 prod product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 
 									<a class="product_img" th:href="@{/shop/product/__${book.id}__}">
 
@@ -150,16 +150,27 @@
 
 									</div>
 
-
 								</div>
 								<!-- End Single Product -->
 							</div>
 						</div>
-
 					</div>
+
+
 				</div>
+
+
 			</div>
+
 		</div>
+		<div th:if="${totalPages > 1}"  class="mt-5 mb-3 d-flex justify-content-center">
+			<ul class="pagination">
+				<li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:class="${pageNumber == currentPage+1 ? 'page-item active' : 'page-item'}">
+					<a th:href="@{/shop(page=${pageNumber}, sortBy=${sortBy},categoryId=${categoryId})}" class="page-link" th:text="${pageNumber}"></a>
+				</li>
+			</ul>
+		</div>
+
 		<script>
 			function addToCart(productId) {
 				var data = JSON.stringify({ "productId": productId, "quantity": 1 });

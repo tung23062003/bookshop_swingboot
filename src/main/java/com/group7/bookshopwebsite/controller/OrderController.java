@@ -22,7 +22,6 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController extends BaseController {
 
-    private BookService bookService;
     private OrderService orderService;
     private OrderDetailService orderDetailService;
 
@@ -46,7 +45,7 @@ public class OrderController extends BaseController {
         return "user/order_details";
     }
     @GetMapping("cancel/{id}")
-    public String cancel(Model model,@PathVariable Long id){
+    public String cancel(@PathVariable Long id){
 
         Order order = orderService.getOrderById(id);
         orderService.cancelOrder(order);

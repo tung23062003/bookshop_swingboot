@@ -72,7 +72,22 @@
 		<div th:replace="user/fragments/search_popup :: search_popup"></div>
 		<!-- End Search Popup -->
 		<!-- Start Bradcaump area -->
-		<div th:replace="user/fragments/bradcaump_area :: bradcaump_area"></div>
+		<div class="ht__bradcaump__area bg-image--6">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title">Contact Us</h2>
+							<nav class="bradcaump-content">
+								<a class="breadcrumb_item" th:href="@{/home}">Home</a>
+								<span class="brd-separetor">/</span>
+								<span class="breadcrumb_item active">Contact Us</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- End Bradcaump area -->
 		<!-- Start Contact Area -->
 		<section class="wn_contact_area bg--white pt--80 pb--80">
@@ -83,7 +98,7 @@
 							<h2 class="contact__title">Get in touch</h2>
 
 							<!-- ... -->
-							<form id="contact-form"  th:action="@{/contact/submit}" method="post" th:object="${contact}">
+							<form id="contact-form" th:action="@{/contact/submit}" method="post" th:object="${contact}">
 								<div class="single-contact-form space-between">
 									<input type="text" name="name" placeholder="Full Name" th:field="*{name}" />
 								</div>
@@ -94,7 +109,8 @@
 									<input type="text" name="subject" placeholder="Subject" th:field="*{subject}" />
 								</div>
 								<div class="single-contact-form message">
-									<textarea name="message" placeholder="Type your message here.." th:field="*{message}"></textarea>
+									<textarea name="message" placeholder="Type your message here.."
+										th:field="*{message}"></textarea>
 								</div>
 								<div class="contact-btn">
 									<button type="submit">Send Email</button>

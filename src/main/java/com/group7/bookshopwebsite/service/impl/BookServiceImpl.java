@@ -5,8 +5,10 @@ import com.group7.bookshopwebsite.dto.BookSearchDTO;
 import com.group7.bookshopwebsite.dto.UserSearchDTO;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.Category;
+import com.group7.bookshopwebsite.entity.User;
 import com.group7.bookshopwebsite.repository.BookRepository;
 import com.group7.bookshopwebsite.repository.CategoryRepository;
+import com.group7.bookshopwebsite.repository.UserRepository;
 import com.group7.bookshopwebsite.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,8 +21,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -28,6 +32,7 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void addBook(Book book, MultipartFile coverImage) {
@@ -93,7 +98,7 @@ public class BookServiceImpl implements BookService {
         if (categoryId != null && keyword != null) {
             return bookRepository.findByCategory_IdAndTitleContaining(categoryId, keyword, pageable);
         } else if (categoryId != null) {
-            Optional<Category> category = categoryRepository.findById(categoryId);
+            Category category = categoryRepository.findById(categoryId).orElse(null);
             return bookRepository.findByCategory(category, pageable);
 
         } else if (keyword != null) {
@@ -156,6 +161,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAllOrderByCreatedDate() {
         return bookRepository.findByOrderByCreatedAtDesc();
+    }
+
+    @Override
+    public Set<Book> getFavoriteBooksByUserId(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            return user.getFavoriteBooks();
+        }
+        return Collections.emptySet();
     }
 
 

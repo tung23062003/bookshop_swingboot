@@ -85,8 +85,10 @@
 									<td th:text="${book.publisher}"></td>
 									<td th:text="${#dates.format(book.publishedDate, 'dd/MM/yyyy')}"></td>
 
-									<td th:text="${book.originalPrice}"></td>
-									<td th:text="${book.salePrice}"></td>
+									<td th:text="${#numbers.formatDecimal(__${(book.originalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"></td>
+									<td
+											th:text="${#numbers.formatDecimal(__${(book.salePrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+									></td>
 									<td th:text="${book.qty}"></td>
 									<td th:text="${book.numberOfPages}"></td>
 									<td><img class="bookImage"

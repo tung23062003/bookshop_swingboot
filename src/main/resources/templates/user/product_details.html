@@ -107,7 +107,9 @@
 										<h1 th:text="${product.title}"></h1>
 
 										<div class="price-box">
-											<span th:text="${product.salePrice}"></span>
+											<span
+													th:text="${#numbers.formatDecimal(__${(product.salePrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+											></span>
 										</div>
 										<div class="product__overview">
 											<p th:text="${product.description}">
@@ -128,10 +130,11 @@
 										</div>
 										<div class="box-tocart d-flex">
 											<div class="addtocart__actions">
-												<a href="#" class="btn-dark text-light py-2 px-4 btn"
-													title="Add to wishlist">
+												<button class="btn-dark text-light py-2 px-4 btn"
+												th:onclick="'addToWishlist('+${product.id} +')'"
+												>
 													Add to Wishlist
-												</a>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -184,6 +187,30 @@
 			</div>
 		</div>
 		<script>
+
+			function addToWishlist(productId){
+
+				$.ajax({
+					type: "POST",
+					url: "/wishlist/add",
+					data: {
+						bookId: productId
+					},
+					success: function(response) {
+						if(response === "ok")
+						{
+							alert("Đã thêm vào danh sách yêu thích !")
+						}else{
+							alert("Bạn cần đăng nhập trước");
+							window.location.href = "/login";
+						}
+					},
+					error: function(xhr, status, error) {
+
+						alert("Đã có lỗi : " + error);
+					}
+				});
+			}
 			function addToCart(productId) {
 				var qty = $('#qty').val(); // Lấy giá trị từ trường input
 				var data = JSON.stringify({"productId": productId, "quantity": qty});

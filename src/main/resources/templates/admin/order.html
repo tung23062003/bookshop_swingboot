@@ -58,7 +58,9 @@
 								<td th:text="${order.phoneNumber}"></td>
 								<td th:text="${order.emailAddress}"></td>
 								<td th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
-								<td th:text="${order.totalPrice}"></td>
+								<td
+										th:text="${#numbers.formatDecimal(__${(order.totalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+								></td>
 								<td th:text="${order.status}"></td>
 								<td th:text="${order.paymentMethod}"></td>
 								<td><a class="text text-primary" th:href="@{/admin/orders_management/details/__${order.id}__}">Chi tiết</a></td>

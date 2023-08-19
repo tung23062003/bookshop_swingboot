@@ -11,7 +11,6 @@ import java.util.Set;
 public interface UserService {
     Page<User> getAllUserOrderByCreatedDate(Pageable pageable) ;
 
-    Set<Book> getFavoriteBooks(Long userId);
     User getUserById(Long userId);
     List<User> getAllUsers();
     void updateUser(User user);
@@ -20,4 +19,8 @@ public interface UserService {
     boolean registerUser(User user);
 
     void deleteUserById(Long id);
+
+    void saveUser(User user);
+    void addBookToUser(Long userId, Long BookId);
+    void removeBookFromUser(Long userId, Long BookId) ;
 }

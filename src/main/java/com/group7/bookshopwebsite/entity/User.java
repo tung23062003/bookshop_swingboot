@@ -50,7 +50,7 @@ public class User implements Serializable, UserDetails {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "favorite_items",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))

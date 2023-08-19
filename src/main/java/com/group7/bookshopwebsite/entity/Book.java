@@ -64,7 +64,7 @@ public class Book implements Serializable {
     private Date updatedAt;
 
 
-    @ManyToMany(mappedBy = "favoriteBooks")
+    @ManyToMany(mappedBy = "favoriteBooks",fetch = FetchType.EAGER)
     private Set<User> usersWhoFavorited;
 
     public void addUser(User user) {

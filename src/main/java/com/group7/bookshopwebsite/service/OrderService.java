@@ -26,4 +26,8 @@ public interface OrderService {
     Page<Order> getOrdersByStatus(String status, Pageable pageable);
 
     Page<Order> getAllOrdersOnPage(Pageable pageable);
+
+    void setProcessingOrder(Order order);
+
+    void setDeliveringOrder(Order order);
 }

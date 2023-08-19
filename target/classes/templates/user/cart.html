@@ -123,14 +123,18 @@
 												th:text="${cartItem.title}"></a>
 										</td>
 										<td class="product-price">
-											<span class="amount" th:text="${cartItem.price}"></span>
+											<span class="amount"
+												  th:text="${#numbers.formatDecimal(__${cartItem.price}__, 0, 'POINT', 0, 'POINT')} + ' VND'"></span>
 										</td>
 										<td class="product-quantity">
 											<input th:min="1" type="number" th:value="${cartItem.quantity}"
 												th:attr="onchange='updateCartItemQuantity(' + ${cartItem.bookId} + ', ' + this.value + ')'" />
 										</td>
 
-										<td class="product-subtotal" th:text="${cartItem.price * cartItem.quantity}">
+										<td class="product-subtotal"
+
+											th:text="${#numbers.formatDecimal(__${cartItem.price * cartItem.quantity}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+											>
 										</td>
 										<td class="product-remove"><a
 												th:href="@{/cart/remove-cart-item/__${cartItem.bookId}__}">X</a></td>
@@ -149,7 +153,9 @@
 									<div class="cart__total__amount"
 										style="display: flex; gap: 50px; background-color: black">
 										<span>Total</span>
-										<span th:text="${totalCart}">{</span>
+										<span
+												th:text="${#numbers.formatDecimal(__${totalCart}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+												></span>
 									</div>
 								</li>
 							</ul>
@@ -174,8 +180,6 @@
 						quantity: newQuantity
 					},
 					success: function (response) {
-						// Update the cart page or perform any necessary actions
-						// based on the successful response.
 						location.reload();
 					}
 				});

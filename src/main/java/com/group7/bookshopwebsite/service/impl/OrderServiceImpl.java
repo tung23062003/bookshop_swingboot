@@ -37,6 +37,19 @@ public class OrderServiceImpl implements OrderService {
     public Page<Order> getAllOrdersOnPage(Pageable pageable) {
         return orderRepository.findAll(pageable);
     }
+
+    @Override
+    public void setProcessingOrder(Order order) {
+        order.setStatus(OrderStatus.PROCESSING);
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void setDeliveringOrder(Order order) {
+        order.setStatus(OrderStatus.DELIVERING);
+        orderRepository.save(order);
+    }
+
     @Override
     public List<Order> getAllOrdersByUser(User user) {
         return orderRepository.findByUserOrderByCreatedAtDesc(user);

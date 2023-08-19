@@ -36,7 +36,9 @@
 										<p class="mb-1"><strong>Ngày tạo:</strong> <span th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
 									</div>
 									<div class="col-md-6">
-										<p class="mb-1"><strong>Tổng giá:</strong> <span th:text="${order.totalPrice}"></span></p>
+										<p class="mb-1"><strong>Tổng giá:</strong> <span
+												th:text="${#numbers.formatDecimal(__${(order.totalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+										></span></p>
 										<p class="mb-1"><strong>Trạng thái:</strong> <span th:text="${order.status}"></span></p>
 										<p class="mb-1"><strong>Phương thức thanh toán:</strong> <span th:text="${order.paymentMethod}"></span></p>
 										<p class="mb-1"><strong>Địa chỉ giao hàng:</strong> <span th:text="${order.shippingAddress}"></span></p>
@@ -71,10 +73,16 @@
 									<td th:text="${item.getBook().publisher}"></td>
 									<td th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
 									<td  th:text="${item.getBook().getCategory().name}"></td>
-									<td  th:text="${item.getBook().originalPrice}"></td>
-									<td th:text="${item.getBook().salePrice}"></td>
+									<td
+											th:text="${#numbers.formatDecimal(__${(item.getBook().originalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+									></td>
+									<td
+											th:text="${#numbers.formatDecimal(__${(item.getBook().salePrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+											></td>
 									<td th:text="${item.quantity}">2</td>
-									<td th:text="${item.quantity * item.price}"></td>
+									<td
+											th:text="${#numbers.formatDecimal(__${item.quantity * item.price}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+											></td>
 
 								</tr>
 
@@ -83,7 +91,10 @@
 						</table>
 						<div class="mt-3 mb-3">
 							<a th:href="@{/admin/orders_management}" class="btn btn-secondary">Quay lại danh sách đơn hàng</a>
-							<a th:href="@{/admin/orders_management/}" class="btn btn-secondary">Cập nhật trạng thái</a>
+							<a th:if="${order.status == 'PENDING'}" th:href="@{/admin/orders_management/details/process/__${order.id}__}" class="btn btn-secondary">Xử lý</a>
+							<a th:if="${order.status == 'PENDING'}" th:href="@{/admin/orders_management/details/cancel/__${order.id}__}" class="btn btn-secondary">Huỷ đơn hàng</a>
+							<a th:if="${order.status == 'PROCESSING'}" th:href="@{/admin/orders_management/details/deliver/__${order.id}__}" class="btn btn-secondary">Giao hàng</a>
+
 						</div>
 					</div>
 				</div>

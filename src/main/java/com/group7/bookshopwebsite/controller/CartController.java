@@ -40,8 +40,8 @@ public class CartController extends BaseController {
     }
     @PostMapping("/add-to-cart")
     public ResponseEntity<String> addToCart(@RequestBody AddToCartRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
+
+        if (getCurrentUser() != null) {
             long productId = request.getProductId();
             int quantity = request.getQuantity();
 
@@ -54,7 +54,7 @@ public class CartController extends BaseController {
             addedItem.setCoverImage(existingBook.getCoverImage());
             cartService.addToCart(session, addedItem);
 
-            System.out.println(cartService.getCart(session).getCartItems().size());
+
             return ResponseEntity.ok("ok");
         }
         else {

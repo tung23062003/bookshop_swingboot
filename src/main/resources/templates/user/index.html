@@ -154,7 +154,7 @@
 						</p>
 
 
-						<h4 th:text="${book.salePrice + 'VND'}"></h4>
+						<h4 th:text="${#numbers.formatDecimal(__${(book.salePrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"></h4>
 						<!-- Add to cart button -->
 						<div class="product__hover__info">
 
@@ -201,7 +201,7 @@
 									<p class="title-container">
 										<a th:href="@{/shop/product/__${book.id}__}" th:text="${book.title}"></a>
 									</p>
-									<h4 th:text="${book.salePrice + 'VND'}"></h4>
+									<h4 th:text="${#numbers.formatDecimal(__${(book.salePrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"></h4>
 									<!-- Add to cart button -->
 									<div class="product__hover__info">
 										<button href="cart.html" class="btn btn-dark block" th:onclick="'addToCart(' + ${book.id} + ')'" th:text="'Add to Cart'"></button>

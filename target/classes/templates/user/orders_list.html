@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Rook Book Store</title>
+	<title>Orders - Admin</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -192,7 +192,9 @@
 													th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}">
 												</td>
 
-												<td class="order-amount" th:text="${order.totalPrice}"></td>
+												<td class="order-amount"
+													th:text="${#numbers.formatDecimal(__${(order.totalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+												></td>
 												<td class="order-status delivering" th:text="${order.status}"></td>
 												<td class="order-details">
 													<a th:href="@{orders/__${order.id}__}">View Details</a>

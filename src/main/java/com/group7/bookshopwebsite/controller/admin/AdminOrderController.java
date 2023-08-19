@@ -35,7 +35,7 @@ public class AdminOrderController extends BaseController {
             @RequestParam(value = "page", defaultValue = "1") int page,
             Model model) {
 
-        int pageSize = 2;
+        int pageSize = 5;
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("createdAt").descending());
 
         Page<Order> orderPage;
@@ -62,5 +62,30 @@ public class AdminOrderController extends BaseController {
         model.addAttribute("ordersDetails", orderDetails);
 
         return "admin/order_detail";
+    }
+
+    @GetMapping("/details/process/{id}")
+    public String process(@PathVariable Long id) {
+
+        Order order = orderService.getOrderById(id);
+        orderService.setProcessingOrder(order);
+
+        return "redirect:/admin/orders_management/details/"+id;
+    }
+    @GetMapping("/details/deliver/{id}")
+    public String deliver( @PathVariable Long id) {
+
+        Order order = orderService.getOrderById(id);
+        orderService.setDeliveringOrder(order);
+
+        return "redirect:/admin/orders_management/details/"+id;
+    }
+    @GetMapping("/details/cancel/{id}")
+    public String cancel( @PathVariable Long id) {
+
+        Order order = orderService.getOrderById(id);
+        orderService.cancelOrder(order);
+
+        return "redirect:/admin/orders_management/details/"+id;
     }
 }

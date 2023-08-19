@@ -3,6 +3,7 @@ package com.group7.bookshopwebsite.service.impl;
 import com.group7.bookshopwebsite.entity.Book;
 import com.group7.bookshopwebsite.entity.Role;
 import com.group7.bookshopwebsite.entity.User;
+import com.group7.bookshopwebsite.repository.BookRepository;
 import com.group7.bookshopwebsite.repository.RoleRepository;
 import com.group7.bookshopwebsite.repository.UserRepository;
 import com.group7.bookshopwebsite.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final BookRepository bookRepository;
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -27,13 +30,26 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
+
     @Override
-    public Set<Book> getFavoriteBooks(Long userId) {
+    public void addBookToUser(Long userId, Long BookId) {
         User user = userRepository.findById(userId).orElse(null);
-        if (user == null) {
-            return null;
+        Book book = bookRepository.findById(BookId).orElse(null);
+
+        if (user != null && book != null) {
+            user.addFavoriteBook(book);
+            userRepository.save(user);
         }
-        return user.getFavoriteBooks();
+    }
+    @Override
+    public void removeBookFromUser(Long userId, Long BookId) {
+        User user = userRepository.findById(userId).orElse(null);
+        Book book = bookRepository.findById(BookId).orElse(null);
+
+        if (user != null && book != null) {
+            user.removeFavoriteBook(book);
+            userRepository.save(user);
+        }
     }
 
 
@@ -81,6 +97,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
 }

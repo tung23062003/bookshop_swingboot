@@ -4,13 +4,13 @@ import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.entity.Contact;
 import com.group7.bookshopwebsite.service.ContactService;
 import lombok.AllArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @AllArgsConstructor
 @Controller
@@ -24,10 +24,10 @@ public class ContactController extends BaseController {
     }
 
     @PostMapping("/submit")
-    public String submitContactForm(@ModelAttribute Contact contact, Model model) {
+    public String submitContactForm(@ModelAttribute Contact contact,
+                                    RedirectAttributes redirectAttributes) {
         Contact savedContact = contactService.saveContact(contact);
-        model.addAttribute("success", true);
-        model.addAttribute("contact", savedContact);
+        redirectAttributes.addFlashAttribute("thankForContacting","Cảm ơn bạn đã liên hệ");
         return "redirect:/contact?success=true";
     }
 }

@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminContactController extends BaseController {
     private final ContactService contactService;
     private final EmailService emailService;
-    private final UserService userService;
     @GetMapping
     public String adminContacts(Model model,
                                 @RequestParam(name = "page", defaultValue = "1") int page,
@@ -47,7 +46,7 @@ public class AdminContactController extends BaseController {
 
     @GetMapping("/response/{id}")
     public String response(@PathVariable Long id, Model model){
-        String userEmail = userService.getUserById(id).getEmail();
+        String userEmail = contactService.getContactById(id).getEmail();
         Email email = new Email();
         email.setTo(userEmail);
         model.addAttribute("newEmail",email);

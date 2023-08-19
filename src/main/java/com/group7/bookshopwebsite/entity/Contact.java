@@ -29,5 +29,4 @@ public class Contact implements Serializable {
     @Column(name = "created_at")
     private Date createdAt;
 
-    // Getters and setters, validation annotations, and other fields as needed
 }

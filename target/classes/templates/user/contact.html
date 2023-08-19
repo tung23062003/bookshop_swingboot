@@ -68,8 +68,6 @@
 		<!-- Header -->
 		<header th:replace="user/fragments/header :: header"></header>
 		<!-- //Header -->
-		<!-- Start Search Popup -->
-		<div th:replace="user/fragments/search_popup :: search_popup"></div>
 		<!-- End Search Popup -->
 		<!-- Start Bradcaump area -->
 		<div class="ht__bradcaump__area bg-image--6">
@@ -90,31 +88,35 @@
 		</div>
 		<!-- End Bradcaump area -->
 		<!-- Start Contact Area -->
+
 		<section class="wn_contact_area bg--white pt--80 pb--80">
+
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 col-12">
 						<div class="contact-form-wrap">
-							<h2 class="contact__title">Get in touch</h2>
-
+							<h2 class="contact__title">Contact us</h2>
+							<div th:if="${param.success}" class="alert alert-success" th:text="${thankForContacting}" role="alert">
+							</div>
 							<!-- ... -->
-							<form id="contact-form" th:action="@{/contact/submit}" method="post" th:object="${contact}">
-								<div class="single-contact-form space-between">
-									<input type="text" name="name" placeholder="Full Name" th:field="*{name}" />
+							<form th:action="@{/contact/submit}" th:method="post" th:object="${contact}">
+								<div class="mb-3">
+									<label for="fullname" class="form-label">Full Name</label>
+									<input type="text" class="form-control" id="fullname" th:field="*{name}" required>
 								</div>
-								<div class="single-contact-form space-between">
-									<input type="email" name="email" placeholder="Email" th:field="*{email}" />
+								<div class="mb-3">
+									<label for="email" class="form-label">Email</label>
+									<input type="email" class="form-control" id="email" th:field="*{email}" required>
 								</div>
-								<div class="single-contact-form">
-									<input type="text" name="subject" placeholder="Subject" th:field="*{subject}" />
+								<div class="mb-3">
+									<label for="title" class="form-label">Title</label>
+									<input type="text" class="form-control" id="title" th:field="*{subject}"  required>
 								</div>
-								<div class="single-contact-form message">
-									<textarea name="message" placeholder="Type your message here.."
-										th:field="*{message}"></textarea>
+								<div class="mb-3">
+									<label for="message" class="form-label">Message</label>
+									<textarea class="form-control" id="message" name="message" th:field="*{message}" rows="4" required></textarea>
 								</div>
-								<div class="contact-btn">
-									<button type="submit">Send Email</button>
-								</div>
+								<button type="submit" class="btn btn-dark">Submit</button>
 							</form>
 							<!-- ... -->
 

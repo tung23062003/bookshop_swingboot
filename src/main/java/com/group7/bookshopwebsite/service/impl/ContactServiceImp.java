@@ -29,4 +29,9 @@ public class ContactServiceImp implements ContactService {
     public void deleteById(Long id) {
         contactRepository.deleteById(id);
     }
+
+    @Override
+    public Contact getContactById(Long id) {
+        return contactRepository.findById(id).orElse(null);
+    }
 }

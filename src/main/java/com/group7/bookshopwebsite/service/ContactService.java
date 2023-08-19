@@ -10,4 +10,6 @@ public interface ContactService {
     Page<Contact> getContactsPage(String sortBy,Pageable pageable);
 
     void deleteById(Long id);
+
+    Contact getContactById(Long id);
 }

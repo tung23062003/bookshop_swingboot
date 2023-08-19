@@ -52,4 +52,12 @@ public class OrderController extends BaseController {
 
         return "redirect:/orders/{id}";
     }
+    @GetMapping("received/{id}")
+    public String received(@PathVariable Long id){
+
+        Order order = orderService.getOrderById(id);
+        orderService.setReceivedToOrder(order);
+
+        return "redirect:/orders/{id}";
+    }
 }

@@ -8,4 +8,6 @@ public interface ContactService {
     Contact saveContact(Contact contact);
 
     Page<Contact> getContactsPage(String sortBy,Pageable pageable);
+
+    void deleteById(Long id);
 }

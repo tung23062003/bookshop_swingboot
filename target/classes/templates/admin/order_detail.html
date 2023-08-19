@@ -93,6 +93,7 @@
 							<a th:href="@{/admin/orders_management}" class="btn btn-secondary">Quay lại danh sách đơn hàng</a>
 							<a th:if="${order.status == 'PENDING'}" th:href="@{/admin/orders_management/details/process/__${order.id}__}" class="btn btn-secondary">Xử lý</a>
 							<a th:if="${order.status == 'PENDING'}" th:href="@{/admin/orders_management/details/cancel/__${order.id}__}" class="btn btn-secondary">Huỷ đơn hàng</a>
+							<a th:if="${order.status == 'PROCESSING'}" th:href="@{/admin/orders_management/details/cancel/__${order.id}__}" class="btn btn-secondary">Huỷ đơn hàng</a>
 							<a th:if="${order.status == 'PROCESSING'}" th:href="@{/admin/orders_management/details/deliver/__${order.id}__}" class="btn btn-secondary">Giao hàng</a>
 
 						</div>

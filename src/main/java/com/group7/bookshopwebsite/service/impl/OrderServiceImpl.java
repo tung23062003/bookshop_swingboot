@@ -51,6 +51,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void setReceivedToOrder(Order order) {
+        order.setStatus(OrderStatus.DELIVERED);
+        orderRepository.save(order);
+    }
+
+    @Override
     public List<Order> getAllOrdersByUser(User user) {
         return orderRepository.findByUserOrderByCreatedAtDesc(user);
     }

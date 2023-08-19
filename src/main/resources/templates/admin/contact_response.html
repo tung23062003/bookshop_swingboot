@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 	<meta charset="utf-8" />
@@ -23,27 +23,37 @@
 
 					<!-- Chỗ cần thay đổi -->
 					<div class="container mt-5">
+						<div th:if="${param.success}" class="alert alert-success" th:text="${message}" role="alert">
+						</div>
+
 						<h2>Trả lời khách hàng</h2>
-						<form>
+						<form th:action="@{/admin/contacts/submit_email}" th:object="${newEmail}" method="post">
 							<!-- Book ID -->
-							<div class="form-group"></div>
+							<input type="hidden" th:name="uid"  th:value="${uid}">
+
 							<br />
 							<!-- Book Title -->
 							<div class="form-group">
+								<label for="received">Người nhận:</label>
+								<input required type="email" class="form-control mt-2" id="received"
+									   name="responseTitle" th:field="*{to}"/>
+							</div>
+							<br />
+							<div class="form-group">
 								<label for="categoryName">Tiêu đề:</label>
 								<input required type="text" class="form-control mt-2" id="categoryName"
-									name="responseTitle" placeholder="Enter response's title" />
+									name="responseTitle" th:field="*{subject}" placeholder="Enter response's title" />
 							</div>
 							<br />
 							<div class="form-group">
 								<label for="description">Nội dung:</label>
 								<textarea rows="6" class="form-control" id="description" name="description"
-									placeholder="Enter response's content"></textarea>
+								th:field="*{message}"	placeholder="Enter response's content"></textarea>
 							</div>
 							<br />
 
 							<!-- Submit Button -->
-							<a th:href="@{/admin/contacts}" class="btn btn-primary mb-3 mt-3 mb-4">Submit</a>
+							<button class="btn btn-primary mb-3 mt-3 mb-4">Submit</button>
 						</form>
 					</div>
 				</div>

@@ -1,26 +1,29 @@
 package com.group7.bookshopwebsite.controller.admin;
 
 import com.group7.bookshopwebsite.controller.common.BaseController;
+import com.group7.bookshopwebsite.dto.Email;
 import com.group7.bookshopwebsite.entity.Contact;
 import com.group7.bookshopwebsite.service.ContactService;
+import com.group7.bookshopwebsite.service.EmailService;
+import com.group7.bookshopwebsite.service.UserService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/admin/contacts")
 public class AdminContactController extends BaseController {
     private final ContactService contactService;
-
+    private final EmailService emailService;
+    private final UserService userService;
     @GetMapping
     public String adminContacts(Model model,
                                 @RequestParam(name = "page", defaultValue = "1") int page,
@@ -36,12 +39,31 @@ public class AdminContactController extends BaseController {
 
         return "/admin/contacts";
     }
-
-
-    @GetMapping("/response/{id}")
-    public String response(@PathVariable Long id){
-        return "admin/contact_response";
+    @GetMapping("/delete/{id}")
+    public String deleteContact(@PathVariable Long id){
+        contactService.deleteById(id);
+        return "redirect:/admin/contacts";
     }
 
+    @GetMapping("/response/{id}")
+    public String response(@PathVariable Long id, Model model){
+        String userEmail = userService.getUserById(id).getEmail();
+        Email email = new Email();
+        email.setTo(userEmail);
+        model.addAttribute("newEmail",email);
+        model.addAttribute("uid",id);
+
+        return "admin/contact_response";
+    }
+    @PostMapping("/submit_email")
+    public String responseTo(@ModelAttribute Email email,
+                             @RequestParam Long uid,
+                             RedirectAttributes redirectAttributes){
+
+        emailService.sendSimpleEmail(email.getTo(),email.getSubject(),email.getMessage());
+        redirectAttributes.addFlashAttribute("message","Gửi mail thành công!");
+
+        return "redirect:/admin/contacts/response/" + uid + "?success=true";
+    }
 
 }

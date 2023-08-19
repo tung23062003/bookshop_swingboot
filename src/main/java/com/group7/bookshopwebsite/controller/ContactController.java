@@ -4,6 +4,7 @@ import com.group7.bookshopwebsite.controller.common.BaseController;
 import com.group7.bookshopwebsite.entity.Contact;
 import com.group7.bookshopwebsite.service.ContactService;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/contact")
 public class ContactController extends BaseController {
-
     private ContactService contactService;
     @GetMapping
     public String getContactPage(Model model){

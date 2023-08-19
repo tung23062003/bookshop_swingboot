@@ -179,6 +179,9 @@
 								<a th:if="${order.getStatus() == 'PENDING' || order.getStatus() == 'PROCESSING'}"
 									th:href="@{/orders/cancel/__${order.id}__}"
 									class="btn btn-danger cancel-order-btn mb-4">Cancel Order</a>
+								<a th:if="${order.getStatus() == 'DELIVERING'}"
+								   th:href="@{/orders/received/__${order.id}__}"
+								   class="btn btn-success mb-4">Received</a>
 							</div>
 							<div class="order-details-table wnro__table table-responsive">
 								<table class="mt-3">

@@ -30,4 +30,6 @@ public interface OrderService {
     void setProcessingOrder(Order order);
 
     void setDeliveringOrder(Order order);
+
+    void setReceivedToOrder(Order order);
 }

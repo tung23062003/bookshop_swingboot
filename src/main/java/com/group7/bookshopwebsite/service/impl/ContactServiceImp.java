@@ -24,4 +24,9 @@ public class ContactServiceImp implements ContactService {
        }
        return contactRepository.findByOrderByCreatedAtAsc(pageable);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        contactRepository.deleteById(id);
+    }
 }

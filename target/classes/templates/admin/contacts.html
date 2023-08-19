@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 	<meta charset="utf-8" />
@@ -44,31 +44,7 @@
 							}
 						</script>
 
-						<!-- Biểu mẫu thêm/sửa liên hệ -->
-						<div id="contactForm" style="display:none;">
-							<h2 id="formTitle">Thông tin liên hệ</h2>
-							<form>
-								<input type="hidden" id="contactId">
-								<div class="mb-3">
-									<label for="name">Name:</label>
-									<input type="text" class="form-control" id="name" required>
-								</div>
-								<div class="mb-3">
-									<label for="email">Email:</label>
-									<input type="email" class="form-control" id="email" required>
-								</div>
-								<div class="mb-3">
-									<label for="subject">Subject:</label>
-									<input type="text" class="form-control" id="subject" required>
-								</div>
-								<div class="mb-3">
-									<label for="message">Message:</label>
-									<textarea class="form-control" id="message" rows="3" required></textarea>
-								</div>
-								<button type="button" class="btn btn-success" onclick="saveContact()">Lưu</button>
-								<button type="button" class="btn btn-secondary" onclick="hideForm()">Hủy</button>
-							</form>
-						</div>
+
 						<!-- Bảng hiển thị danh sách liên hệ -->
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
@@ -95,7 +71,7 @@
 									<td>
 										<a th:href="@{/admin/contacts/response/__${contact.id}__}" type="button"
 											class="btn btn-success btn-sm">Phản hồi</a>
-										<button class="btn btn-danger btn-sm" onclick="">Xóa</button>
+										<button class="btn btn-danger btn-sm" th:onclick="'deleteContact(' + ${contact.id}+')'">Xóa</button>
 									</td>
 								</tr>
 
@@ -105,6 +81,15 @@
 					</div>
 				</div>
 			</main>
+<script>
+	function deleteContact(contactId){
+		if(confirm("Bạn muốn xoá liên hệ này ?")){
+			window.location.href="/admin/contacts/delete/"+contactId;
+		}else{
+			return;
+		}
+	}
+</script>
 
 			<div th:if="${totalPages > 1}" class="d-flex justify-content-center">
 				<ul class="pagination">

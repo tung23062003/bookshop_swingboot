@@ -31,4 +31,6 @@ public interface BookService {
     List<Book> findAllOrderByCreatedDate();
 
     Set<Book> getFavoriteBooksByUserId(Long id);
+
+    Long countBook();
 }

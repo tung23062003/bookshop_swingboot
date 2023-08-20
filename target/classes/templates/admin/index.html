@@ -29,10 +29,9 @@
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">Primary Card</div>
-								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View
-										Details</a>
+								<div class="card-body">Tổng số đơn hàng </div>
+								<div th:text="${numberOfOrders}" class="card-footer d-flex align-items-center justify-content-between">
+
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -41,10 +40,9 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-warning text-white mb-4">
-								<div class="card-body">Warning Card</div>
-								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View
-										Details</a>
+								<div class="card-body">Số người dùng</div>
+								<div th:text="${numberOfUsers}" class="card-footer d-flex align-items-center justify-content-between">
+
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -53,10 +51,11 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-success text-white mb-4">
-								<div class="card-body">Success Card</div>
-								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View
-										Details</a>
+								<div class="card-body">Tổng doanh thu</div>
+								<div
+										th:text="${#numbers.formatDecimal(__${(totalRevenue)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+										class="card-footer d-flex align-items-center justify-content-between">
+
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -65,10 +64,9 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">Danger Card</div>
-								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View
-										Details</a>
+								<div class="card-body">Số sản phẩm</div>
+								<div th:text="${numberOfBooks}" class="card-footer d-flex align-items-center justify-content-between">
+
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -80,122 +78,42 @@
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> DataTable Example
+							<i class="fas fa-table me-1"></i> Các đơn hàng gần đây
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
-								<thead>
+							<div class="card-body">
+								<table class="table table-striped table-hover table-bordered ">
+									<thead>
 									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-									</tr>
-								</tfoot>
-								<tbody>
-									<tr>
-										<td>Tiger Nixon</td>
-										<td>System Architect</td>
-										<td>Edinburgh</td>
-										<td>61</td>
-										<td>2011/04/25</td>
-										<td>$320,800</td>
-									</tr>
-									<tr>
-										<td>Garrett Winters</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>63</td>
-										<td>2011/07/25</td>
-										<td>$170,750</td>
-									</tr>
-									<tr>
-										<td>Ashton Cox</td>
-										<td>Junior Technical Author</td>
-										<td>San Francisco</td>
-										<td>66</td>
-										<td>2009/01/12</td>
-										<td>$86,000</td>
-									</tr>
-									<tr>
-										<td>Cedric Kelly</td>
-										<td>Senior Javascript Developer</td>
-										<td>Edinburgh</td>
-										<td>22</td>
-										<td>2012/03/29</td>
-										<td>$433,060</td>
-									</tr>
+										<th>ID</th>
 
-									<tr>
-										<td>Michael Silva</td>
-										<td>Marketing Designer</td>
-										<td>London</td>
-										<td>66</td>
-										<td>2012/11/27</td>
-										<td>$198,500</td>
+										<th>Người nhận</th>
+										<th>Số điện thoại</th>
+										<th>Email</th>
+										<th>Ngày tạo</th>
+										<th>Tổng giá</th>
+										<th>Trạng thái</th>
+										<th>Phương thức thanh toán</th>
+
+										<th>Hành động</th>
 									</tr>
-									<tr>
-										<td>Paul Byrd</td>
-										<td>Chief Financial Officer (CFO)</td>
-										<td>New York</td>
-										<td>64</td>
-										<td>2010/06/09</td>
-										<td>$725,000</td>
+									</thead>
+									<tbody>
+									<tr th:each="order : ${orders}">
+										<td th:text="${order.id}"></td>
+										<td th:text="${order.reciever}"></td>
+										<td th:text="${order.phoneNumber}"></td>
+										<td th:text="${order.emailAddress}"></td>
+										<td th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+										<td
+												th:text="${#numbers.formatDecimal(__${(order.totalPrice)}__, 0, 'POINT', 0, 'POINT')} + ' VND'"
+										></td>
+										<td th:text="${order.status}"></td>
+										<td th:text="${order.paymentMethod}"></td>
+										<td><a class="text text-primary" th:href="@{/admin/orders_management/details/__${order.id}__}">Chi tiết</a></td>
 									</tr>
-									<tr>
-										<td>Gloria Little</td>
-										<td>Systems Administrator</td>
-										<td>New York</td>
-										<td>59</td>
-										<td>2009/04/10</td>
-										<td>$237,500</td>
-									</tr>
-									<tr>
-										<td>Bradley Greer</td>
-										<td>Software Engineer</td>
-										<td>London</td>
-										<td>41</td>
-										<td>2012/10/13</td>
-										<td>$132,000</td>
-									</tr>
-									<tr>
-										<td>Dai Rios</td>
-										<td>Personnel Lead</td>
-										<td>Edinburgh</td>
-										<td>35</td>
-										<td>2012/09/26</td>
-										<td>$217,500</td>
-									</tr>
-									<tr>
-										<td>Jenette Caldwell</td>
-										<td>Development Lead</td>
-										<td>New York</td>
-										<td>30</td>
-										<td>2011/09/03</td>
-										<td>$345,000</td>
-									</tr>
-									<tr>
-										<td>Yuri Berry</td>
-										<td>Chief Marketing Officer (CMO)</td>
-										<td>New York</td>
-										<td>40</td>
-										<td>2009/06/25</td>
-										<td>$675,000</td>
-									</tr>
-								</tbody>
-							</table>
+									</tbody>
+								</table>
 						</div>
 					</div>
 				</div>

@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +55,21 @@ public class OrderServiceImpl implements OrderService {
     public void setReceivedToOrder(Order order) {
         order.setStatus(OrderStatus.DELIVERED);
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getTop10orders() {
+        return orderRepository.findTop10ByOrderByCreatedAtDesc();
+    }
+
+    @Override
+    public BigDecimal getTotalRevenue() {
+        return orderRepository.sumTotalPrice();
+    }
+
+    @Override
+    public Long countOrder() {
+        return orderRepository.count();
     }
 
     @Override
@@ -116,6 +132,7 @@ public class OrderServiceImpl implements OrderService {
     public Page<Order> getOrdersByStatus(String status, Pageable pageable) {
         return orderRepository.findByStatus(status,pageable);
     }
+
 
 
 }

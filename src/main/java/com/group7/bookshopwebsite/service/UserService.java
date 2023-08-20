@@ -23,4 +23,6 @@ public interface UserService {
     void saveUser(User user);
     void addBookToUser(Long userId, Long BookId);
     void removeBookFromUser(Long userId, Long BookId) ;
+
+    Long countUser();
 }

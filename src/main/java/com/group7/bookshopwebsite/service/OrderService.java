@@ -7,6 +7,7 @@ import com.group7.bookshopwebsite.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface OrderService {
@@ -32,4 +33,10 @@ public interface OrderService {
     void setDeliveringOrder(Order order);
 
     void setReceivedToOrder(Order order);
+
+    List<Order> getTop10orders();
+
+    BigDecimal getTotalRevenue();
+
+    Long countOrder();
 }

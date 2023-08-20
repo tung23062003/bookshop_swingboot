@@ -172,5 +172,10 @@ public class BookServiceImpl implements BookService {
         return Collections.emptySet();
     }
 
+    @Override
+    public Long countBook() {
+        return bookRepository.count();
+    }
+
 
 }

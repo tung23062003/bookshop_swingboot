@@ -20,7 +20,7 @@ public class HomeController extends BaseController {
 
     private BookService bookService;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     String getUserHomePage(Model model){
 
         List<Book> top4BestSeller =bookService.getTop4BestSeller();

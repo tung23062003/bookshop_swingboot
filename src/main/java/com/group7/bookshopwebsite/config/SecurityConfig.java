@@ -38,13 +38,13 @@ public class SecurityConfig {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/")
                                 .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-                                .logoutSuccessUrl("/home")
+                                .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
 

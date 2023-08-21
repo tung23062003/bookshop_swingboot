@@ -25,7 +25,7 @@ public class RegisterController extends BaseController {
     public String showRegistrationForm(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof User) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("user", new User());
         return "user/register";
